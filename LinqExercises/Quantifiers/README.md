@@ -1,4 +1,4 @@
-# Restriction Operators
+# Quantifiers Operators
 
 ### Any
 The Any operator checks whether any element of a sequence satisfies a condition.
