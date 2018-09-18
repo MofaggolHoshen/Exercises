@@ -30,7 +30,7 @@ namespace IsPrarentDeleteChiledDelete
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConStr"));
             });
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

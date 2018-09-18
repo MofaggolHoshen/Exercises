@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.Net.SDK">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LinqCommon\LinqCommon.csproj" />
+	</ItemGroup>
+</Project>

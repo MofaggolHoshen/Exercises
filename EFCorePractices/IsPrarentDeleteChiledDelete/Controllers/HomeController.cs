@@ -26,11 +26,11 @@ namespace IsPrarentDeleteChiledDelete.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            var p = this._context.Parents.Find(2);
+            //var p = this._context.Parents.Find(2);
 
-            var rp = this._context.Parents.Remove(p);
+            //var rp = this._context.Parents.Remove(p);
 
-            this._context.SaveChanges();
+            //this._context.SaveChanges();
 
             return View();
         }
