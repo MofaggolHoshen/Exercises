@@ -14,49 +14,24 @@ namespace OrderingOperators
         {
             LinqExamples samples = new LinqExamples();
 
-            //Comment or uncomment the method calls below to run or not
-
-              samples.LinqOrderBy();
-
-            samples.Linq29();
-
+            samples.LinqOrderBy01();
+            samples.LinqOrderBy02();
             samples.Linq30();
-
-
-            samples.Linq31();
-
-
-            samples.Linq32();
-
-
-            samples.Linq33();
-
-
-            samples.Linq34();
-
-
-            samples.Linq35();
-
-
-            samples.Linq36();
-
-
-
-
-            samples.Linq37();
-
-
-            samples.Linq38();
-
-
-
-            samples.Linq39();
+            samples.LinqOrderBy03();
+            samples.LinqOrderByDescending04();
+            samples.LinqOrderByDescending05();
+            samples.LinqOrderByDecending06();
+            samples.LinqOrderBy06();
+            samples.LinqOrderByThenBy07();
+            samples.LinqOderBy08();
+            samples.LinqOrderBy09();
+            samples.LinqOrderBy10();
 
         }
-        
+
         class LinqExamples
         {
-            public void LinqOrderBy()
+            public void LinqOrderBy01()
             {
                 string[] words = { "cherry", "apple", "blueberry" };
 
@@ -72,9 +47,10 @@ namespace OrderingOperators
                 }
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses orderby to sort a list of words by length.")]
-            public void Linq29()
+            /// <summary>
+            /// "This sample uses orderby to sort a list of words by length."
+            /// </summary>
+            public void LinqOrderBy02()
             {
                 string[] words = { "cherry", "apple", "blueberry" };
 
@@ -90,9 +66,9 @@ namespace OrderingOperators
                 }
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses orderby to sort a list of products by name. " +
-                        "Use the \"descending\" keyword at the end of the clause to perform a reverse ordering.")]
+            /// <summary>
+            /// 
+            /// </summary>
             public void Linq30()
             {
                 List<Product> products = LinqHellper.GetProducts();
@@ -101,8 +77,6 @@ namespace OrderingOperators
                     from prod in products
                     orderby prod.ProductName
                     select prod;
-
-                //ObjectDumper.Write(sortedProducts);
             }
 
             // Custom comparer for use with ordering operators
@@ -114,22 +88,14 @@ namespace OrderingOperators
                 }
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses an OrderBy clause with a custom comparer to " +
-                         "do a case-insensitive sort of the words in an array.")]
-            public void Linq31()
+            public void LinqOrderBy03()
             {
                 string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
                 var sortedWords = words.OrderBy(a => a, new CaseInsensitiveComparer());
-
-                //ObjectDumper.Write(sortedWords);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses orderby and descending to sort a list of " +
-                         "doubles from highest to lowest.")]
-            public void Linq32()
+            public void LinqOrderByDescending04()
             {
                 double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
 
@@ -145,10 +111,8 @@ namespace OrderingOperators
                 }
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses orderby to sort a list of products by units in stock " +
-                         "from highest to lowest.")]
-            public void Linq33()
+
+            public void LinqOrderByDescending05()
             {
                 List<Product> products = LinqHellper.GetProducts();
 
@@ -156,26 +120,17 @@ namespace OrderingOperators
                     from prod in products
                     orderby prod.UnitsInStock descending
                     select prod;
-
-                //ObjectDumper.Write(sortedProducts);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses method syntax to call OrderByDescending because it " +
-                        " enables you to use a custom comparer.")]
-            public void Linq34()
+            public void LinqOrderByDecending06()
             {
                 string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
                 var sortedWords = words.OrderByDescending(a => a, new CaseInsensitiveComparer());
 
-                //ObjectDumper.Write(sortedWords);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses a compound orderby to sort a list of digits, " +
-                         "first by length of their name, and then alphabetically by the name itself.")]
-            public void Linq35()
+            public void LinqOrderBy06()
             {
                 string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
@@ -191,11 +146,8 @@ namespace OrderingOperators
                 }
             }
 
-            [Category("Ordering Operators")]
-            [Description("The first query in this sample uses method syntax to call OrderBy and ThenBy with a custom comparer to " +
-                         "sort first by word length and then by a case-insensitive sort of the words in an array. " +
-                         "The second two queries show another way to perform the same task.")]
-            public void Linq36()
+
+            public void LinqOrderByThenBy07()
             {
                 string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
@@ -203,23 +155,15 @@ namespace OrderingOperators
                     words.OrderBy(a => a.Length)
                          .ThenBy(a => a, new CaseInsensitiveComparer());
 
-                // Another way. TODO is this use of ThenBy correct? It seems to work on this sample array.
                 var sortedWords2 =
                     from word in words
                     orderby word.Length
                     select word;
 
                 var sortedWords3 = sortedWords2.ThenBy(a => a, new CaseInsensitiveComparer());
-
-                //ObjectDumper.Write(sortedWords);
-
-                //ObjectDumper.Write(sortedWords3);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses a compound orderby to sort a list of products, " +
-                         "first by category, and then by unit price, from highest to lowest.")]
-            public void Linq37()
+            public void LinqOderBy08()
             {
                 List<Product> products = LinqHellper.GetProducts();
 
@@ -228,28 +172,18 @@ namespace OrderingOperators
                     orderby prod.Category, prod.UnitPrice descending
                     select prod;
 
-                //ObjectDumper.Write(sortedProducts);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses an OrderBy and a ThenBy clause with a custom comparer to " +
-                         "sort first by word length and then by a case-insensitive descending sort " +
-                         "of the words in an array.")]
-            public void Linq38()
+            public void LinqOrderBy09()
             {
                 string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
                 var sortedWords =
                     words.OrderBy(a => a.Length)
                          .ThenByDescending(a => a, new CaseInsensitiveComparer());
-
-                //ObjectDumper.Write(sortedWords);
             }
 
-            [Category("Ordering Operators")]
-            [Description("This sample uses Reverse to create a list of all digits in the array whose " +
-                         "second letter is 'i' that is reversed from the order in the original array.")]
-            public void Linq39()
+            public void LinqOrderBy10()
             {
                 string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
