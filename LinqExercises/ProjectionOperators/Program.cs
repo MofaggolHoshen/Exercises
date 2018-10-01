@@ -5,65 +5,50 @@ using System.Text;
 using System.ComponentModel;
 using System.Data;
 using System.Xml.Linq;
+using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProjectionOperators
 {
-    class Program
+    public class PetOwner
     {
-        static void Main(string[] args)
+        public string Name { get; set; }
+        public List<String> Pets { get; set; }
+    }
+
+    [TestClass]
+    public class LinqExamples
+    {
+        private DataSet testDS;
+
+        public LinqExamples()
         {
-            LinqExamples samples = new LinqExamples();
-
-            //samples.SelectProjection();
-            samples.SelectManyProjection();
-
-            //samples.DataProjection01();
-            //samples.DataProjection02();
-            //samples.DataProjection03();
-            //samples.DataProjection04();
-            //samples.DataProjection05();
-
-            
-
-            Console.ReadKey();
+            testDS = TestHelper.CreateTestDataset();
         }
 
-        class PetOwner
+        [TestMethod]
+        public void SelectProjection()
         {
-            public string Name { get; set; }
-            public List<String> Pets { get; set; }
-        }
 
-        private class LinqExamples
-        {
-            private DataSet testDS;
-
-            public LinqExamples()
-            {
-                testDS = TestHelper.CreateTestDataset();
-            }
-
-            public void SelectProjection()
-            {
-
-                string[] fruits = { "apple", "banana", "mango", "orange",
+            string[] fruits = { "apple", "banana", "mango", "orange",
                       "passionfruit", "grape" };
 
-                var query =
-                    fruits.Select((fruit, index) =>
-                                      new { index, str = fruit.Substring(0, index) });
+            var query =
+                fruits.Select((fruit, index) =>
+                                  new { index, str = fruit.Substring(0, index) });
 
-                var result = fruits.SelectMany(i => i.Substring(0, 1));
+            var result = fruits.SelectMany(i => i.Substring(0, 1));
 
-                foreach (var obj in query)
-                {
-                    Console.WriteLine("{0}", obj);
-                }
-            }
-
-            public void SelectManyProjection()
+            foreach (var obj in query)
             {
-                PetOwner[] petOwners ={
+                Debug.WriteLine("{0}", obj);
+            }
+        }
+
+        [TestMethod]
+        public void SelectManyProjection()
+        {
+            PetOwner[] petOwners ={
                     new PetOwner {
                         Name ="Higa, Sidney",
                         Pets = new List<string>{ "Scruffy", "Sam" }
@@ -78,472 +63,477 @@ namespace ProjectionOperators
                     }
                 };
 
-                IEnumerable<string> query1 = petOwners.SelectMany(petOwner => petOwner.Pets);
+            IEnumerable<string> query1 = petOwners.SelectMany(petOwner => petOwner.Pets);
 
-                Console.WriteLine("Using SelectMany():");
+            Debug.WriteLine("Using SelectMany():");
 
-                // Only one foreach loop is required to iterate 
-                // through the results since it is a
-                // one-dimensional collection.
-                foreach (string pet in query1)
-                {
-                    Console.WriteLine(pet);
-                }
-            }
-
-            public void DataProjection01()
+            // Only one foreach loop is required to iterate 
+            // through the results since it is a
+            // one-dimensional collection.
+            foreach (string pet in query1)
             {
-
-                var numbers = testDS.Tables["Numbers"].AsEnumerable();
-
-                var numsPlusOne =
-                    from n in numbers
-                    select n.Field<int>(0) + 1;
-
-                Console.WriteLine("Numbers + 1:");
-                foreach (var i in numsPlusOne)
-                {
-                    Console.WriteLine(i);
-                }
+                Debug.WriteLine(pet);
             }
+        }
 
-            public void DataProjection02()
+        [TestMethod]
+        public void DataProjection01()
+        {
+
+            var numbers = testDS.Tables["Numbers"].AsEnumerable();
+
+            var numsPlusOne =
+                from n in numbers
+                select n.Field<int>(0) + 1;
+
+            Debug.WriteLine("Numbers + 1:");
+            foreach (var i in numsPlusOne)
             {
-
-                var products = testDS.Tables["Products"].AsEnumerable();
-
-                var productNames =
-                    from p in products
-                    select p.Field<string>("ProductName");
-
-                Console.WriteLine("Product Names:");
-                foreach (var productName in productNames)
-                {
-                    Console.WriteLine(productName);
-                }
+                Debug.WriteLine(i);
             }
+        }
 
+        [TestMethod]
+        public void DataProjection02()
+        {
 
-            public void DataProjection03()
+            var products = testDS.Tables["Products"].AsEnumerable();
+
+            var productNames =
+                from p in products
+                select p.Field<string>("ProductName");
+
+            Debug.WriteLine("Product Names:");
+            foreach (var productName in productNames)
             {
-
-                var numbers = testDS.Tables["Numbers"].AsEnumerable();
-                string[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
-                var textNums = numbers.Select(p => strings[p.Field<int>("number")]);
-
-                Console.WriteLine("Number strings:");
-                foreach (var s in textNums)
-                {
-                    Console.WriteLine(s);
-                }
+                Debug.WriteLine(productName);
             }
+        }
 
-            public void DataProjection04()
+        [TestMethod]
+        public void DataProjection03()
+        {
+
+            var numbers = testDS.Tables["Numbers"].AsEnumerable();
+            string[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+            var textNums = numbers.Select(p => strings[p.Field<int>("number")]);
+
+            Debug.WriteLine("Number strings:");
+            foreach (var s in textNums)
             {
+                Debug.WriteLine(s);
+            }
+        }
 
-                var words = testDS.Tables["Words"].AsEnumerable();
+        [TestMethod]
+        public void DataProjection04()
+        {
 
-                var upperLowerWords = words.Select(p => new
+            var words = testDS.Tables["Words"].AsEnumerable();
+
+            var upperLowerWords = words.Select(p => new
+            {
+                Upper = (p.Field<string>(0)).ToUpper(),
+                Lower = (p.Field<string>(0)).ToLower()
+            });
+
+            foreach (var ul in upperLowerWords)
+            {
+                Debug.WriteLine("Uppercase: " + ul.Upper + ", Lowercase: " + ul.Lower);
+            }
+        }
+
+        [TestMethod]
+        public void DataProjection05()
+        {
+
+            var numbers = testDS.Tables["Numbers"].AsEnumerable();
+            var digits = testDS.Tables["Digits"];
+            string[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+            var digitOddEvens = numbers.
+                Select(n => new
                 {
-                    Upper = (p.Field<string>(0)).ToUpper(),
-                    Lower = (p.Field<string>(0)).ToLower()
+                    Digit = digits.Rows[n.Field<int>("number")]["digit"],
+                    Even = (n.Field<int>("number") % 2 == 0)
                 });
 
-                foreach (var ul in upperLowerWords)
-                {
-                    Console.WriteLine("Uppercase: " + ul.Upper + ", Lowercase: " + ul.Lower);
-                }
-            }
-
-            public void DataProjection05()
+            foreach (var d in digitOddEvens)
             {
+                Debug.WriteLine("The digit {0} is {1}.", d.Digit, d.Even ? "even" : "odd");
+            }
+        }
 
-                var numbers = testDS.Tables["Numbers"].AsEnumerable();
-                var digits = testDS.Tables["Digits"];
-                string[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+        [TestMethod]
+        public void DataProjection06()
+        {
 
-                var digitOddEvens = numbers.
-                    Select(n => new
-                    {
-                        Digit = digits.Rows[n.Field<int>("number")]["digit"],
-                        Even = (n.Field<int>("number") % 2 == 0)
-                    });
+            var customers = testDS.Tables["Customers"].AsEnumerable();
+            var orders = testDS.Tables["Orders"].AsEnumerable();
 
-                foreach (var d in digitOddEvens)
+            var myOrders =
+                from c in customers
+                from o in orders
+                where c.Field<string>("CustomerID") == o.Field<string>("CustomerID") &&
+                o.Field<DateTime>("OrderDate") >= new DateTime(1998, 1, 1)
+                select new
                 {
-                    Console.WriteLine("The digit {0} is {1}.", d.Digit, d.Even ? "even" : "odd");
-                }
-            }
-
-            public void DataProjection06()
-            {
-
-                var customers = testDS.Tables["Customers"].AsEnumerable();
-                var orders = testDS.Tables["Orders"].AsEnumerable();
-
-                var myOrders =
-                    from c in customers
-                    from o in orders
-                    where c.Field<string>("CustomerID") == o.Field<string>("CustomerID") &&
-                    o.Field<DateTime>("OrderDate") >= new DateTime(1998, 1, 1)
-                    select new
-                    {
-                        CustomerID = c.Field<string>("CustomerID"),
-                        OrderID = o.Field<int>("OrderID"),
-                        OrderDate = o.Field<DateTime>("OrderDate")
-                    };
-            }
+                    CustomerID = c.Field<string>("CustomerID"),
+                    OrderID = o.Field<int>("OrderID"),
+                    OrderDate = o.Field<DateTime>("OrderDate")
+                };
         }
     }
+}
 
-    #region "Test Helper"
-    internal class TestHelper
+#region "Test Helper"
+internal class TestHelper
+{
+    internal static DataSet CreateTestDataset()
     {
-        internal static DataSet CreateTestDataset()
+        DataSet ds = new DataSet();
+
+        // Customers Table
+        ds.Tables.Add(CreateNumbersTable());
+        ds.Tables.Add(CreateLowNumbersTable());
+        ds.Tables.Add(CreateEmptyNumbersTable());
+        ds.Tables.Add(CreateProductList());
+        ds.Tables.Add(CreateDigitsTable());
+        ds.Tables.Add(CreateWordsTable());
+        ds.Tables.Add(CreateWords2Table());
+        ds.Tables.Add(CreateWords3Table());
+        ds.Tables.Add(CreateWords4Table());
+        ds.Tables.Add(CreateAnagramsTable());
+        ds.Tables.Add(CreateNumbersATable());
+        ds.Tables.Add(CreateNumbersBTable());
+        ds.Tables.Add(CreateFactorsOf300());
+        ds.Tables.Add(CreateDoublesTable());
+        ds.Tables.Add(CreateScoreRecordsTable());
+        ds.Tables.Add(CreateAttemptedWithdrawalsTable());
+        ds.Tables.Add(CreateEmployees1Table());
+        ds.Tables.Add(CreateEmployees2Table());
+
+        CreateCustomersAndOrdersTables(ds);
+
+        ds.AcceptChanges();
+        return ds;
+    }
+
+
+    private static DataTable CreateNumbersTable()
+    {
+
+        int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+        DataTable table = new DataTable("Numbers");
+        table.Columns.Add("number", typeof(int));
+
+        foreach (int n in numbers)
         {
-            DataSet ds = new DataSet();
-
-            // Customers Table
-            ds.Tables.Add(CreateNumbersTable());
-            ds.Tables.Add(CreateLowNumbersTable());
-            ds.Tables.Add(CreateEmptyNumbersTable());
-            ds.Tables.Add(CreateProductList());
-            ds.Tables.Add(CreateDigitsTable());
-            ds.Tables.Add(CreateWordsTable());
-            ds.Tables.Add(CreateWords2Table());
-            ds.Tables.Add(CreateWords3Table());
-            ds.Tables.Add(CreateWords4Table());
-            ds.Tables.Add(CreateAnagramsTable());
-            ds.Tables.Add(CreateNumbersATable());
-            ds.Tables.Add(CreateNumbersBTable());
-            ds.Tables.Add(CreateFactorsOf300());
-            ds.Tables.Add(CreateDoublesTable());
-            ds.Tables.Add(CreateScoreRecordsTable());
-            ds.Tables.Add(CreateAttemptedWithdrawalsTable());
-            ds.Tables.Add(CreateEmployees1Table());
-            ds.Tables.Add(CreateEmployees2Table());
-
-            CreateCustomersAndOrdersTables(ds);
-
-            ds.AcceptChanges();
-            return ds;
+            table.Rows.Add(new object[] { n });
         }
 
+        return table;
+    }
 
-        private static DataTable CreateNumbersTable()
+    private static DataTable CreateEmptyNumbersTable()
+    {
+
+        DataTable table = new DataTable("EmptyNumbers");
+        table.Columns.Add("number", typeof(int));
+        return table;
+    }
+
+    private static DataTable CreateDigitsTable()
+    {
+
+        string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+        DataTable table = new DataTable("Digits");
+        table.Columns.Add("digit", typeof(string));
+
+        foreach (string digit in digits)
         {
-
-            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-            DataTable table = new DataTable("Numbers");
-            table.Columns.Add("number", typeof(int));
-
-            foreach (int n in numbers)
-            {
-                table.Rows.Add(new object[] { n });
-            }
-
-            return table;
+            table.Rows.Add(new object[] { digit });
         }
+        return table;
+    }
 
-        private static DataTable CreateEmptyNumbersTable()
+    private static DataTable CreateWordsTable()
+    {
+        string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+        DataTable table = new DataTable("Words");
+        table.Columns.Add("word", typeof(string));
+
+        foreach (string word in words)
         {
-
-            DataTable table = new DataTable("EmptyNumbers");
-            table.Columns.Add("number", typeof(int));
-            return table;
+            table.Rows.Add(new object[] { word });
         }
+        return table;
+    }
 
-        private static DataTable CreateDigitsTable()
+    private static DataTable CreateWords2Table()
+    {
+        string[] words = { "believe", "relief", "receipt", "field" };
+        DataTable table = new DataTable("Words2");
+        table.Columns.Add("word", typeof(string));
+
+        foreach (string word in words)
         {
-
-            string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            DataTable table = new DataTable("Digits");
-            table.Columns.Add("digit", typeof(string));
-
-            foreach (string digit in digits)
-            {
-                table.Rows.Add(new object[] { digit });
-            }
-            return table;
+            table.Rows.Add(new object[] { word });
         }
+        return table;
+    }
 
-        private static DataTable CreateWordsTable()
+    private static DataTable CreateWords3Table()
+    {
+        string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+        DataTable table = new DataTable("Words3");
+        table.Columns.Add("word", typeof(string));
+
+        foreach (string word in words)
         {
-            string[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
-            DataTable table = new DataTable("Words");
-            table.Columns.Add("word", typeof(string));
-
-            foreach (string word in words)
-            {
-                table.Rows.Add(new object[] { word });
-            }
-            return table;
+            table.Rows.Add(new object[] { word });
         }
+        return table;
+    }
 
-        private static DataTable CreateWords2Table()
+    private static DataTable CreateWords4Table()
+    {
+        string[] words = { "blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese" };
+        DataTable table = new DataTable("Words4");
+        table.Columns.Add("word", typeof(string));
+
+        foreach (string word in words)
         {
-            string[] words = { "believe", "relief", "receipt", "field" };
-            DataTable table = new DataTable("Words2");
-            table.Columns.Add("word", typeof(string));
-
-            foreach (string word in words)
-            {
-                table.Rows.Add(new object[] { word });
-            }
-            return table;
+            table.Rows.Add(new object[] { word });
         }
+        return table;
+    }
 
-        private static DataTable CreateWords3Table()
+    private static DataTable CreateAnagramsTable()
+    {
+        string[] anagrams = { "from   ", " salt", " earn ", "  last   ", " near ", " form  " };
+        DataTable table = new DataTable("Anagrams");
+        table.Columns.Add("anagram", typeof(string));
+
+        foreach (string word in anagrams)
         {
-            string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
-            DataTable table = new DataTable("Words3");
-            table.Columns.Add("word", typeof(string));
-
-            foreach (string word in words)
-            {
-                table.Rows.Add(new object[] { word });
-            }
-            return table;
+            table.Rows.Add(new object[] { word });
         }
+        return table;
+    }
 
-        private static DataTable CreateWords4Table()
-        {
-            string[] words = { "blueberry", "chimpanzee", "abacus", "banana", "apple", "cheese" };
-            DataTable table = new DataTable("Words4");
-            table.Columns.Add("word", typeof(string));
-
-            foreach (string word in words)
-            {
-                table.Rows.Add(new object[] { word });
-            }
-            return table;
-        }
-
-        private static DataTable CreateAnagramsTable()
-        {
-            string[] anagrams = { "from   ", " salt", " earn ", "  last   ", " near ", " form  " };
-            DataTable table = new DataTable("Anagrams");
-            table.Columns.Add("anagram", typeof(string));
-
-            foreach (string word in anagrams)
-            {
-                table.Rows.Add(new object[] { word });
-            }
-            return table;
-        }
-
-        private static DataTable CreateScoreRecordsTable()
-        {
-            var scoreRecords = new[] { new {Name = "Alice", Score = 50},
+    private static DataTable CreateScoreRecordsTable()
+    {
+        var scoreRecords = new[] { new {Name = "Alice", Score = 50},
                                 new {Name = "Bob"  , Score = 40},
                                 new {Name = "Cathy", Score = 45}
                             };
 
-            DataTable table = new DataTable("ScoreRecords");
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("Score", typeof(int));
+        DataTable table = new DataTable("ScoreRecords");
+        table.Columns.Add("Name", typeof(string));
+        table.Columns.Add("Score", typeof(int));
 
-            foreach (var r in scoreRecords)
+        foreach (var r in scoreRecords)
+        {
+            table.Rows.Add(new object[] { r.Name, r.Score });
+        }
+        return table;
+    }
+
+    private static DataTable CreateAttemptedWithdrawalsTable()
+    {
+        int[] attemptedWithdrawals = { 20, 10, 40, 50, 10, 70, 30 };
+
+        DataTable table = new DataTable("AttemptedWithdrawals");
+        table.Columns.Add("withdrawal", typeof(int));
+
+        foreach (var r in attemptedWithdrawals)
+        {
+            table.Rows.Add(new object[] { r });
+        }
+        return table;
+    }
+
+    private static DataTable CreateNumbersATable()
+    {
+        int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
+        DataTable table = new DataTable("NumbersA");
+        table.Columns.Add("number", typeof(int));
+
+        foreach (int number in numbersA)
+        {
+            table.Rows.Add(new object[] { number });
+        }
+        return table;
+    }
+
+    private static DataTable CreateNumbersBTable()
+    {
+        int[] numbersB = { 1, 3, 5, 7, 8 };
+        DataTable table = new DataTable("NumbersB");
+        table.Columns.Add("number", typeof(int));
+
+        foreach (int number in numbersB)
+        {
+            table.Rows.Add(new object[] { number });
+        }
+        return table;
+    }
+
+    private static DataTable CreateLowNumbersTable()
+    {
+        int[] lowNumbers = { 1, 11, 3, 19, 41, 65, 19 };
+        DataTable table = new DataTable("LowNumbers");
+        table.Columns.Add("number", typeof(int));
+
+        foreach (int number in lowNumbers)
+        {
+            table.Rows.Add(new object[] { number });
+        }
+        return table;
+    }
+
+    private static DataTable CreateFactorsOf300()
+    {
+        int[] factorsOf300 = { 2, 2, 3, 5, 5 };
+
+        DataTable table = new DataTable("FactorsOf300");
+        table.Columns.Add("factor", typeof(int));
+
+        foreach (int factor in factorsOf300)
+        {
+            table.Rows.Add(new object[] { factor });
+        }
+        return table;
+    }
+
+    private static DataTable CreateDoublesTable()
+    {
+        double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
+
+        DataTable table = new DataTable("Doubles");
+        table.Columns.Add("double", typeof(double));
+
+        foreach (double d in doubles)
+        {
+            table.Rows.Add(new object[] { d });
+        }
+        return table;
+    }
+
+    private static DataTable CreateEmployees1Table()
+    {
+
+        DataTable table = new DataTable("Employees1");
+        table.Columns.Add("id", typeof(int));
+        table.Columns.Add("name", typeof(string));
+        table.Columns.Add("worklevel", typeof(int));
+
+        table.Rows.Add(new object[] { 1, "Jones", 5 });
+        table.Rows.Add(new object[] { 2, "Smith", 5 });
+        table.Rows.Add(new object[] { 2, "Smith", 5 });
+        table.Rows.Add(new object[] { 3, "Smith", 6 });
+        table.Rows.Add(new object[] { 4, "Arthur", 11 });
+        table.Rows.Add(new object[] { 5, "Arthur", 12 });
+
+        return table;
+    }
+
+    private static DataTable CreateEmployees2Table()
+    {
+
+        DataTable table = new DataTable("Employees2");
+        table.Columns.Add("id", typeof(int));
+        table.Columns.Add("lastname", typeof(string));
+        table.Columns.Add("level", typeof(int));
+
+        table.Rows.Add(new object[] { 1, "Jones", 10 });
+        table.Rows.Add(new object[] { 2, "Jagger", 5 });
+        table.Rows.Add(new object[] { 3, "Thomas", 6 });
+        table.Rows.Add(new object[] { 4, "Collins", 11 });
+        table.Rows.Add(new object[] { 4, "Collins", 12 });
+        table.Rows.Add(new object[] { 5, "Arthur", 12 });
+
+        return table;
+    }
+
+    private static void CreateCustomersAndOrdersTables(DataSet ds)
+    {
+
+        DataTable customers = new DataTable("Customers");
+        customers.Columns.Add("CustomerID", typeof(string));
+        customers.Columns.Add("CompanyName", typeof(string));
+        customers.Columns.Add("Address", typeof(string));
+        customers.Columns.Add("City", typeof(string));
+        customers.Columns.Add("Region", typeof(string));
+        customers.Columns.Add("PostalCode", typeof(string));
+        customers.Columns.Add("Country", typeof(string));
+        customers.Columns.Add("Phone", typeof(string));
+        customers.Columns.Add("Fax", typeof(string));
+
+        ds.Tables.Add(customers);
+
+        DataTable orders = new DataTable("Orders");
+
+        orders.Columns.Add("OrderID", typeof(int));
+        orders.Columns.Add("CustomerID", typeof(string));
+        orders.Columns.Add("OrderDate", typeof(DateTime));
+        orders.Columns.Add("Total", typeof(decimal));
+
+        ds.Tables.Add(orders);
+
+        DataRelation co = new DataRelation("CustomersOrders", customers.Columns["CustomerID"], orders.Columns["CustomerID"], true);
+        ds.Relations.Add(co);
+
+        var customerList = (
+            from e in XDocument.Load("customers.xml").
+                      Root.Elements("customer")
+            select new Customer
             {
-                table.Rows.Add(new object[] { r.Name, r.Score });
+                CustomerID = (string)e.Element("id"),
+                CompanyName = (string)e.Element("name"),
+                Address = (string)e.Element("address"),
+                City = (string)e.Element("city"),
+                Region = (string)e.Element("region"),
+                PostalCode = (string)e.Element("postalcode"),
+                Country = (string)e.Element("country"),
+                Phone = (string)e.Element("phone"),
+                Fax = (string)e.Element("fax"),
+                Orders = (
+                    from o in e.Elements("orders").Elements("order")
+                    select new Order
+                    {
+                        OrderID = (int)o.Element("id"),
+                        OrderDate = (DateTime)o.Element("orderdate"),
+                        Total = (decimal)o.Element("total")
+                    })
+                    .ToArray()
             }
-            return table;
-        }
+            ).ToList();
 
-        private static DataTable CreateAttemptedWithdrawalsTable()
+        foreach (Customer cust in customerList)
         {
-            int[] attemptedWithdrawals = { 20, 10, 40, 50, 10, 70, 30 };
-
-            DataTable table = new DataTable("AttemptedWithdrawals");
-            table.Columns.Add("withdrawal", typeof(int));
-
-            foreach (var r in attemptedWithdrawals)
-            {
-                table.Rows.Add(new object[] { r });
-            }
-            return table;
-        }
-
-        private static DataTable CreateNumbersATable()
-        {
-            int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
-            DataTable table = new DataTable("NumbersA");
-            table.Columns.Add("number", typeof(int));
-
-            foreach (int number in numbersA)
-            {
-                table.Rows.Add(new object[] { number });
-            }
-            return table;
-        }
-
-        private static DataTable CreateNumbersBTable()
-        {
-            int[] numbersB = { 1, 3, 5, 7, 8 };
-            DataTable table = new DataTable("NumbersB");
-            table.Columns.Add("number", typeof(int));
-
-            foreach (int number in numbersB)
-            {
-                table.Rows.Add(new object[] { number });
-            }
-            return table;
-        }
-
-        private static DataTable CreateLowNumbersTable()
-        {
-            int[] lowNumbers = { 1, 11, 3, 19, 41, 65, 19 };
-            DataTable table = new DataTable("LowNumbers");
-            table.Columns.Add("number", typeof(int));
-
-            foreach (int number in lowNumbers)
-            {
-                table.Rows.Add(new object[] { number });
-            }
-            return table;
-        }
-
-        private static DataTable CreateFactorsOf300()
-        {
-            int[] factorsOf300 = { 2, 2, 3, 5, 5 };
-
-            DataTable table = new DataTable("FactorsOf300");
-            table.Columns.Add("factor", typeof(int));
-
-            foreach (int factor in factorsOf300)
-            {
-                table.Rows.Add(new object[] { factor });
-            }
-            return table;
-        }
-
-        private static DataTable CreateDoublesTable()
-        {
-            double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
-
-            DataTable table = new DataTable("Doubles");
-            table.Columns.Add("double", typeof(double));
-
-            foreach (double d in doubles)
-            {
-                table.Rows.Add(new object[] { d });
-            }
-            return table;
-        }
-
-        private static DataTable CreateEmployees1Table()
-        {
-
-            DataTable table = new DataTable("Employees1");
-            table.Columns.Add("id", typeof(int));
-            table.Columns.Add("name", typeof(string));
-            table.Columns.Add("worklevel", typeof(int));
-
-            table.Rows.Add(new object[] { 1, "Jones", 5 });
-            table.Rows.Add(new object[] { 2, "Smith", 5 });
-            table.Rows.Add(new object[] { 2, "Smith", 5 });
-            table.Rows.Add(new object[] { 3, "Smith", 6 });
-            table.Rows.Add(new object[] { 4, "Arthur", 11 });
-            table.Rows.Add(new object[] { 5, "Arthur", 12 });
-
-            return table;
-        }
-
-        private static DataTable CreateEmployees2Table()
-        {
-
-            DataTable table = new DataTable("Employees2");
-            table.Columns.Add("id", typeof(int));
-            table.Columns.Add("lastname", typeof(string));
-            table.Columns.Add("level", typeof(int));
-
-            table.Rows.Add(new object[] { 1, "Jones", 10 });
-            table.Rows.Add(new object[] { 2, "Jagger", 5 });
-            table.Rows.Add(new object[] { 3, "Thomas", 6 });
-            table.Rows.Add(new object[] { 4, "Collins", 11 });
-            table.Rows.Add(new object[] { 4, "Collins", 12 });
-            table.Rows.Add(new object[] { 5, "Arthur", 12 });
-
-            return table;
-        }
-
-        private static void CreateCustomersAndOrdersTables(DataSet ds)
-        {
-
-            DataTable customers = new DataTable("Customers");
-            customers.Columns.Add("CustomerID", typeof(string));
-            customers.Columns.Add("CompanyName", typeof(string));
-            customers.Columns.Add("Address", typeof(string));
-            customers.Columns.Add("City", typeof(string));
-            customers.Columns.Add("Region", typeof(string));
-            customers.Columns.Add("PostalCode", typeof(string));
-            customers.Columns.Add("Country", typeof(string));
-            customers.Columns.Add("Phone", typeof(string));
-            customers.Columns.Add("Fax", typeof(string));
-
-            ds.Tables.Add(customers);
-
-            DataTable orders = new DataTable("Orders");
-
-            orders.Columns.Add("OrderID", typeof(int));
-            orders.Columns.Add("CustomerID", typeof(string));
-            orders.Columns.Add("OrderDate", typeof(DateTime));
-            orders.Columns.Add("Total", typeof(decimal));
-
-            ds.Tables.Add(orders);
-
-            DataRelation co = new DataRelation("CustomersOrders", customers.Columns["CustomerID"], orders.Columns["CustomerID"], true);
-            ds.Relations.Add(co);
-
-            var customerList = (
-                from e in XDocument.Load("customers.xml").
-                          Root.Elements("customer")
-                select new Customer
-                {
-                    CustomerID = (string)e.Element("id"),
-                    CompanyName = (string)e.Element("name"),
-                    Address = (string)e.Element("address"),
-                    City = (string)e.Element("city"),
-                    Region = (string)e.Element("region"),
-                    PostalCode = (string)e.Element("postalcode"),
-                    Country = (string)e.Element("country"),
-                    Phone = (string)e.Element("phone"),
-                    Fax = (string)e.Element("fax"),
-                    Orders = (
-                        from o in e.Elements("orders").Elements("order")
-                        select new Order
-                        {
-                            OrderID = (int)o.Element("id"),
-                            OrderDate = (DateTime)o.Element("orderdate"),
-                            Total = (decimal)o.Element("total")
-                        })
-                        .ToArray()
-                }
-                ).ToList();
-
-            foreach (Customer cust in customerList)
-            {
-                customers.Rows.Add(new object[] {cust.CustomerID, cust.CompanyName, cust.Address, cust.City, cust.Region,
+            customers.Rows.Add(new object[] {cust.CustomerID, cust.CompanyName, cust.Address, cust.City, cust.Region,
                                                 cust.PostalCode, cust.Country, cust.Phone, cust.Fax});
-                foreach (Order order in cust.Orders)
-                {
-                    orders.Rows.Add(new object[] { order.OrderID, cust.CustomerID, order.OrderDate, order.Total });
-                }
+            foreach (Order order in cust.Orders)
+            {
+                orders.Rows.Add(new object[] { order.OrderID, cust.CustomerID, order.OrderDate, order.Total });
             }
         }
+    }
 
-        private static DataTable CreateProductList()
-        {
+    private static DataTable CreateProductList()
+    {
 
-            DataTable table = new DataTable("Products");
-            table.Columns.Add("ProductID", typeof(int));
-            table.Columns.Add("ProductName", typeof(string));
-            table.Columns.Add("Category", typeof(string));
-            table.Columns.Add("UnitPrice", typeof(decimal));
-            table.Columns.Add("UnitsInStock", typeof(int));
+        DataTable table = new DataTable("Products");
+        table.Columns.Add("ProductID", typeof(int));
+        table.Columns.Add("ProductName", typeof(string));
+        table.Columns.Add("Category", typeof(string));
+        table.Columns.Add("UnitPrice", typeof(decimal));
+        table.Columns.Add("UnitsInStock", typeof(int));
 
-            var productList = new[] {
+        var productList = new[] {
               new { ProductID = 1, ProductName = "Chai", Category = "Beverages",
                 UnitPrice = 18.0000M, UnitsInStock = 39 },
               new { ProductID = 2, ProductName = "Chang", Category = "Beverages",
@@ -700,53 +690,52 @@ namespace ProjectionOperators
                 UnitPrice = 13.0000M, UnitsInStock = 32 }
             };
 
-            foreach (var x in productList)
-            {
-                table.Rows.Add(new object[] { x.ProductID, x.ProductName, x.Category, x.UnitPrice, x.UnitsInStock });
-            }
-
-            return table;
-        }
-    }
-
-    public class Customer
-    {
-        public Customer(string customerID, string companyName)
+        foreach (var x in productList)
         {
-            CustomerID = customerID;
-            CompanyName = companyName;
-            Orders = new Order[10];
+            table.Rows.Add(new object[] { x.ProductID, x.ProductName, x.Category, x.UnitPrice, x.UnitsInStock });
         }
 
-        public Customer() { }
-
-        public string CustomerID;
-        public string CompanyName;
-        public string Address;
-        public string City;
-        public string Region;
-        public string PostalCode;
-        public string Country;
-        public string Phone;
-        public string Fax;
-        public Order[] Orders;
+        return table;
     }
-
-    public class Order
-    {
-        public Order(int orderID, DateTime orderDate, decimal total)
-        {
-            OrderID = orderID;
-            OrderDate = orderDate;
-            Total = total;
-        }
-
-        public Order() { }
-
-        public int OrderID;
-        public DateTime OrderDate;
-        public decimal Total;
-    }
-
-    #endregion
 }
+
+public class Customer
+{
+    public Customer(string customerID, string companyName)
+    {
+        CustomerID = customerID;
+        CompanyName = companyName;
+        Orders = new Order[10];
+    }
+
+    public Customer() { }
+
+    public string CustomerID;
+    public string CompanyName;
+    public string Address;
+    public string City;
+    public string Region;
+    public string PostalCode;
+    public string Country;
+    public string Phone;
+    public string Fax;
+    public Order[] Orders;
+}
+
+public class Order
+{
+    public Order(int orderID, DateTime orderDate, decimal total)
+    {
+        OrderID = orderID;
+        OrderDate = orderDate;
+        Total = total;
+    }
+
+    public Order() { }
+
+    public int OrderID;
+    public DateTime OrderDate;
+    public decimal Total;
+}
+
+#endregion

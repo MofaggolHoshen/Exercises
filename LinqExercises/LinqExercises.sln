@@ -20,9 +20,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quantifiers", "Quantifiers\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectionOperators", "ProjectionOperators\ProjectionOperators.csproj", "{72FDC6E8-09DD-4C89-B054-F3D3F2CB8B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartitioningOperators", "PartitioningOperators\PartitioningOperators.csproj", "{6BB93FFA-C410-4620-A0E0-A1FF88E5838B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartitioningOperators", "PartitioningOperators\PartitioningOperators.csproj", "{6BB93FFA-C410-4620-A0E0-A1FF88E5838B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingOperators", "OrderingOperators\OrderingOperators.csproj", "{05350A97-9D66-40BC-90B5-BCD0DCFE1AAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingOperators", "OrderingOperators\OrderingOperators.csproj", "{05350A97-9D66-40BC-90B5-BCD0DCFE1AAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiscellaneousOperators", "MiscellaneousOperators\MiscellaneousOperators.csproj", "{92DDD501-DD67-4442-BF0F-BE4B236533F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +98,14 @@ Global
 		{05350A97-9D66-40BC-90B5-BCD0DCFE1AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{05350A97-9D66-40BC-90B5-BCD0DCFE1AAB}.Release|x86.ActiveCfg = Release|Any CPU
 		{05350A97-9D66-40BC-90B5-BCD0DCFE1AAB}.Release|x86.Build.0 = Release|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Release|x86.ActiveCfg = Release|Any CPU
+		{92DDD501-DD67-4442-BF0F-BE4B236533F3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
