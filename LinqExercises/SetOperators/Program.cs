@@ -14,7 +14,7 @@ namespace SetOperators
     public class LinqExamples
     {
         /// <summary>
-        /// The Distinct operator eliminates duplicate elements from a sequence.
+        /// The Distinct operator eliminates duplicate elements from a sequence. 
         /// </summary>
         [TestMethod]
         public void LinqDistinct01()
