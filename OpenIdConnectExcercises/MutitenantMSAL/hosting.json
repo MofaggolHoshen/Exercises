@@ -1,0 +1,4 @@
+{
+    //"urls": "https://localhost:44317;https://localhost:6001;https://localhost:6002"
+    "urls": "http://ipc.analytics.direct;http://quipu.analytics.direct"
+}
