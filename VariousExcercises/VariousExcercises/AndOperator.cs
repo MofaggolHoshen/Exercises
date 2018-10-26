@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace VariousExcercises
@@ -37,7 +39,6 @@ namespace VariousExcercises
         {
             Debug.WriteLine("Method2 called.");
             return false;
-        }
-        
+        } 
     }
 }
