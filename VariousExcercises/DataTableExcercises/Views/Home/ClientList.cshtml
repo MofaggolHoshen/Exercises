@@ -1,0 +1,33 @@
+﻿@*@model List<DataTableExcercises.Models.Client>*@
+@{
+    ViewData["Title"] = "ClientList";
+}
+
+<table id="example" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>ZIP / Post code</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var data = [];
+        for (var i = 0; i < 50000; i++) {
+            data.push([i, i, i, i, i]);
+        }
+
+        $('#example').DataTable({
+            data: data,
+            deferRender: true,
+            scrollY: 200,
+            scrollCollapse: true,
+            scroller: true
+        });
+    });
+</script>
