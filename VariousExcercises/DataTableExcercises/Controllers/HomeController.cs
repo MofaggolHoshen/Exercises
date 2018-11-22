@@ -10,11 +10,9 @@ namespace DataTableExcercises.Controllers
 {
     public class HomeController : Controller
     {
-        public DatabaseContext _context;
-
-        public HomeController(DatabaseContext databaseContext)
+        public HomeController()
         {
-            this._context = databaseContext;
+            
         }
         public IActionResult Index()
         {

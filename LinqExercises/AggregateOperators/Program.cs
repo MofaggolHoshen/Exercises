@@ -261,8 +261,9 @@ namespace AggregateOperators
         public void Aggregate01()
         {
             double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
-            
-            //It will go every two values
+
+            //Frist value will be in runningProduct and second value will be in nextFactor, 
+            //after multiplied store in runningProduct and nextFactor will take 3rd value again multiplied with stored value in runningProduct and so on
             double product = doubles.Aggregate((runningProduct, nextFactor) => runningProduct * nextFactor);
 
             Debug.WriteLine("Total product of all numbers: {0}", product);
@@ -278,29 +279,22 @@ namespace AggregateOperators
             int[] attemptedWithdrawals = { 20, 10, 40, 50, 10, 70, 30 };
 
             //Here balance is startBalance and nextWithdrawal, go one by one from attemptedWithdrawals array values 
-            double endBalance =
-                attemptedWithdrawals.Aggregate(startBalance,
-                    (balance, nextWithdrawal) =>
-                        ((nextWithdrawal <= balance) ? (balance - nextWithdrawal) : balance));
+            double endBalance = attemptedWithdrawals.Aggregate(startBalance, (balance, nextWithdrawal) =>((nextWithdrawal <= balance) ? (balance - nextWithdrawal) : balance));
 
             Debug.WriteLine("Ending balance: {0}", endBalance);
         }
 
+        [TestMethod]
         public void Aggregate03()
         {
             string[] fruits = { "apple", "mango", "orange", "passionfruit", "grape" };
 
             // Determine whether any string in the array is longer than "banana".
-            string longestName =
-                fruits.Aggregate("banana",
-                                (longest, next) =>
-                                    next.Length > longest.Length ? next : longest,
+            string longestName = fruits.Aggregate("banana", (longest, next) => next.Length > longest.Length ? next : longest,
                                 // Return the final result as an upper case string.
                                 fruit => fruit.ToUpper());
 
-            Debug.WriteLine(
-                "The fruit with the longest name is {0}.",
-                longestName);
+            Debug.WriteLine("The fruit with the longest name is {0}.", longestName);
 
         }
 
@@ -311,8 +305,7 @@ namespace AggregateOperators
             int[] ints = { 4, 8, 8, 3, 9, 0, 7, 8, 2 };
 
             // Count the even numbers in the array, using a seed value of 0.
-            int numEven = ints.Aggregate(0, (total, next) =>
-                                                next % 2 == 0 ? total + 1 : total);
+            int numEven = ints.Aggregate(0, (total, next) => next % 2 == 0 ? total + 1 : total);
 
             Debug.WriteLine("The number of even integers is: {0}", numEven);
         }
