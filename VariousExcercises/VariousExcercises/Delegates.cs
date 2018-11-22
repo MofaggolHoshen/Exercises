@@ -1,19 +1,31 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace DelegatesExcercise
+namespace VariousExcercises
 {
-    class Program
+    [TestClass]
+    public class Delegates
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void Delegate01()
         {
+            var ex = new Example()
+            {
+                Id = 1,
+                Name = "Mofaggol Hoshen"
+            };
 
-            //Console.WriteLine(Ex.FirstName);
-            //Console.WriteLine(Ex.LastName.ToString());
+            Extention.UpdateAnObjectUsingActionDelegate<Example>(ex, u =>
+            {
+                u.Address = "Adam-Opel Str.";
+            });
+        }
 
-            //Console.WriteLine("Hello World!");
-
-            //Example from = null;
-            //NullValuePrintExample(from);
+        [TestMethod]
+        public void Delegate02()
+        {
 
             var ex = new Example()
             {
@@ -21,12 +33,20 @@ namespace DelegatesExcercise
                 Name = "Mofaggol Hoshen"
             };
 
-            Extention.FuncDelegateWithGenericType<Example>(ex, u =>
+            UpdateAnObjectUsingActionDelegate(ex, excercise =>
             {
-                u.Address = "Adam-Opel Str.";
-            });
+                excercise.Name = "Hosher, Mofaggol";
 
+            });
         }
+
+        public static void UpdateAnObjectUsingActionDelegate(Example ex, Action<Example> predicate)
+        {
+            predicate.Invoke(ex);
+
+            var result = ex;
+        }
+
 
         private static void NullValuePrintExample(Example from)
         {
@@ -37,12 +57,8 @@ namespace DelegatesExcercise
             }
         }
 
-        public static void FuncDelegate(Example ex, Action<Example> predicate)
-        {
-            predicate.Invoke(ex);
 
-            var result = ex;
-        }
+
         public static Example InjectFrom(Example from, Example To)
         {
             var example = new Example();
@@ -65,6 +81,17 @@ namespace DelegatesExcercise
             return example;
         }
     }
+
+    public static class Extention
+    {
+        public static void UpdateAnObjectUsingActionDelegate<T>(this T ex, Action<T> predicate)
+        {
+            predicate.Invoke(ex);
+
+            var result = ex;
+        }
+    }
+
 
     public class Example
     {

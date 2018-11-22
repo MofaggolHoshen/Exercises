@@ -7,10 +7,10 @@ using System.Text;
 namespace VariousExcercises
 {
     [TestClass]
-    public class Excescises
+    public class RemoveSpaceFronString
     {
         [TestMethod]
-        public void RemoveSpaceFronString()
+        public void RemoveSpace()
         {
             var str = "MofaggolHoshen";
 
