@@ -10,11 +10,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Quantifiers
 {
+    /// <summary>
+    /// Quantifiers
+    /// 1. Any
+    /// 2. All
+    /// 3. Contains
+    /// More details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic15
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {
         [TestMethod]
-        public void LinqAny01()
+        public void AnyAndContails01()
         {
             string[] words = { "believe", "relief", "receipt", "field" };
 
@@ -24,7 +31,7 @@ namespace Quantifiers
         }
 
         [TestMethod]
-        public void LinqAny02()
+        public void Any02()
         {
             List<Product> products = LinqHellper.GetProducts();
 
@@ -36,7 +43,7 @@ namespace Quantifiers
         }
 
         [TestMethod]
-        public void LinqAll01()
+        public void All01()
         {
             int[] numbers = { 1, 11, 3, 19, 41, 65, 19 };
 
@@ -46,7 +53,7 @@ namespace Quantifiers
         }
 
         [TestMethod]
-        public void LinqAll02()
+        public void All02()
         {
             List<Product> products = LinqHellper.GetProducts();
 
@@ -58,7 +65,7 @@ namespace Quantifiers
         }
 
         [TestMethod]
-        public void LinqContains01()
+        public void Contains01()
         {
 
             string[] fruits = { "apple", "banana", "mango", "orange", "passionfruit", "grape" };
@@ -77,7 +84,7 @@ namespace Quantifiers
         /// public static bool Contains<TSource> (this System.Collections.Generic.IEnumerable<TSource> source, TSource value, System.Collections.Generic.IEqualityComparer<TSource> comparer);
         /// </summary>
         [TestMethod]
-        public void LinqContains02()
+        public void Contains02()
         {
 
             Fruit[] fruits = { new Fruit { Name = "apple", Code = 9 },

@@ -10,6 +10,10 @@ using System.Diagnostics;
 
 namespace OrderingOperators
 {
+    /// <summary>
+    /// 1. OrderBy and ThenBy : Operators in the OrderBy/ThenBy family of operators order a sequence according to one or more keys.
+    /// Details: https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic8
+    /// </summary>
 
     [TestClass]
     public class LinqExamples

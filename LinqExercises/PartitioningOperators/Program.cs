@@ -10,13 +10,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PartitioningOperators
 {
-
-    public class Order
-    {
-        public int OrderID { get; set; }
-        public DateTime OrderDate { get; set; }
-        public decimal Total { get; set; }
-    }
+    /// <summary>
+    /// Partitioning Operators
+    /// 1. Take : The Take operator yields a given number of elements from a sequence and then skips the remainder of the sequence.
+    /// 2. Skip : The Skip operator skips a given number of elements from a sequence and then yields the remainder of the sequence.
+    /// 3. TakeWhile : The TakeWhile operator yields elements from a sequence while a test is true and then skips the remainder of the sequence.
+    /// 4. SkipWhile : The SkipWhile operator skips elements from a sequence while a test is true and then yields the remainder of the sequence.
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic5
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {

@@ -10,6 +10,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SetOperators
 {
+    /// <summary>
+    /// Set Operators
+    /// 1. Distinct : The Distinct operator eliminates duplicate elements from a sequence.
+    /// 2. Union : The Union operator produces the set union of two sequences.
+    /// 3. Intersect : The Intersect operator produces the set intersection of two sequences.
+    /// 4. Except : The Except operator produces the set difference between two sequences.
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic10
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {

@@ -9,12 +9,19 @@ using System.Diagnostics;
 
 namespace GenerationOperators
 {
+    /// <summary>
+    /// Generation Operators
+    /// 1. Range
+    /// 2. Repeat
+    /// 3. Empty
+    /// More details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic14
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {
         //This sample uses Range to generate a sequence of numbers from 100 to 149 that is used to find which numbers in that range are odd and even.
         [TestMethod]
-        public void GenerationOperators01()
+        public void Range01()
         {
             var numbers =
                 from n in Enumerable.Range(100, 50)
@@ -28,7 +35,7 @@ namespace GenerationOperators
 
         //This sample uses Repeat to generate a sequence that contains the number 7 ten times.
         [TestMethod]
-        public void GenerationOperators02()
+        public void Repeat01()
         {
             var numbers = Enumerable.Repeat(7, 10);
 
@@ -36,12 +43,6 @@ namespace GenerationOperators
             {
                 Debug.WriteLine(n);
             }
-        }
-
-        public void GenerationOperators03()
-        {
-         
-         
         }
     }
 }

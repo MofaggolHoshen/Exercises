@@ -10,6 +10,12 @@ using System.Diagnostics;
 
 namespace JoinOperators
 {
+    /// <summary>
+    /// Join Operators
+    /// 1. Join
+    /// 2. GroupJoin
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic6
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {

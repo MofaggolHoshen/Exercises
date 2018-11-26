@@ -1,20 +1,19 @@
-using System;
+using LinqCommon;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using LinqCommon;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTestProject
+namespace ConcatenationOperator
 {
+    /// <summary>
+    /// Concatenation Operator 
+    /// 1. Concat
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic7
+    /// </summary>
     [TestClass]
-    public class MiscellaneousOperators
+    public class Program
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
-
         /// <summary>
         /// This sample uses Concat to create one sequence that contains each array's values, one after the other.
         /// </summary>
@@ -57,28 +56,5 @@ namespace UnitTestProject
             }
         }
 
-        /// <summary>
-        /// This sample uses SequenceEquals to see if two sequences match on all elements in the same order.
-        /// </summary>
-        public void LinqSequenceEqual01()
-        {
-            var wordsA = new string[] { "cherry", "apple", "blueberry" };
-            var wordsB = new string[] { "cherry", "apple", "blueberry" };
-
-            bool match = wordsA.SequenceEqual(wordsB);
-
-            Debug.WriteLine("The sequences match: {0}", match);
-        }
-
-
-        public void LinqSequenceEqual02()
-        {
-            var wordsA = new string[] { "cherry", "apple", "blueberry" };
-            var wordsB = new string[] { "apple", "blueberry", "cherry" };
-
-            bool match = wordsA.SequenceEqual(wordsB);
-
-            Debug.WriteLine("The sequences match: {0}", match);
-        }
     }
 }

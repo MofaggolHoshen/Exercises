@@ -11,6 +11,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RestrictionOperators
 {
+    /// <summary>
+    /// Restriction Operatiors
+    /// 1. Where
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic3
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {

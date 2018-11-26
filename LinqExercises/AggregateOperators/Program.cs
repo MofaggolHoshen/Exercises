@@ -10,12 +10,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AggregateOperators
 {
+    /// <summary>
+    /// Aggregate Operators
+    /// 1. Count
+    /// 2. LongCount
+    /// 3. Sum
+    /// 4. Min
+    /// 5. Max
+    /// 6. Average
+    /// 7. Aggregate : The Aggregate operator applies a function over a sequence.
+    /// More details: https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic16
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {
         [TestMethod]
         //This sample uses Count to get the number of unique prime factors of 300.
-        public void Distinct01()
+        public void Count01()
         {
             int[] primeFactorsOf300 = { 2, 2, 3, 5, 5 };
 
@@ -26,7 +37,7 @@ namespace AggregateOperators
         }
 
         [TestMethod]
-        public void Count01()
+        public void Count02()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 
@@ -38,7 +49,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Count to return a list of customers and how many orders each has.
-        public void Projection01()
+        public void Count03()
         {
             List<Customer> customers = LinqHellper.GetCustomers();
 
@@ -54,7 +65,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Count to return a list of categories and how many products each has.
-        public void Projection02()
+        public void Count04()
         {
             List<Product> products = LinqHellper.GetProducts();
 
@@ -71,7 +82,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Sum to get the total units in stock for each product category.
-        public void Projection03()
+        public void Sum01()
         {
             List<Product> products = LinqHellper.GetProducts();
 
@@ -88,7 +99,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Sum to add all the numbers in an array.
-        public void Sum01()
+        public void Sum02()
         {
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 
@@ -99,7 +110,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Sum to get the total number of characters of all words in the array.
-        public void Sum02()
+        public void Sum03()
         {
             string[] words = { "cherry", "apple", "blueberry" };
 
@@ -132,7 +143,7 @@ namespace AggregateOperators
 
         [TestMethod]
         //This sample uses Min to get the cheapest price among each category's products.
-        public void GroupAndProjection01()
+        public void Min03()
         {
             List<Product> products = LinqHellper.GetProducts();
 

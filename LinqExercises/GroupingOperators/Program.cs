@@ -11,6 +11,11 @@ using System.Diagnostics;
 
 namespace GroupingOperators
 {
+    /// <summary>
+    /// Grouping Operators
+    /// 1. GroupBy
+    /// Details: https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic9
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {

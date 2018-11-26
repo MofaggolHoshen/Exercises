@@ -10,6 +10,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ElementOperators
 {
+    /// <summary>
+    /// Element Operators
+    /// 1. First
+    /// 2. FirstOrDefault
+    /// 3. Last
+    /// 4. LastOrDefault
+    /// 5. Single
+    /// 6. SingleOrDefault
+    /// 7. ElementAt
+    /// 8. ElementAtOrDefault
+    /// 9. DefaultIfEmpty : The DefaultIfEmpty operator supplies a default element for an empty sequence.
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic13
+    /// </summary>
     [TestClass]
     public class LinqExamples
         {

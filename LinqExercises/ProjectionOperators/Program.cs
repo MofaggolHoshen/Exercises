@@ -10,6 +10,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ProjectionOperators
 {
+    /// <summary>
+    /// Projection Operators
+    /// 1. Select
+    /// 2. SelectMany : The SelectMany operator performs a one-to-many element projection over a sequence.
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic4
+    /// </summary>
     public class PetOwner
     {
         public string Name { get; set; }

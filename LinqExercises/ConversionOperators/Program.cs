@@ -9,6 +9,17 @@ using System.Diagnostics;
 
 namespace ConversionOperators
 {
+    /// <summary>
+    /// Conversion Operators
+    /// 1. AsEnumerable : The AsEnumerable operator returns its argument typed as IEnumerable<TSource>.
+    /// 2. ToArray
+    /// 3. ToList
+    /// 4. ToDictionary
+    /// 5. ToLookup : The ToLookup operator creates a Lookup<TKey, TElement> from a sequence
+    /// 6. OfType : The OfType operator filters the elements of a sequence based on a type.
+    /// 7. Cast : The Cast operator casts the elements of a sequence to a given type.
+    /// Details : https://msdn.microsoft.com/en-us/library/bb394939.aspx#standardqueryops_topic11
+    /// </summary>
     [TestClass]
     public class LinqExamples
     {
@@ -68,7 +79,7 @@ namespace ConversionOperators
         }
         
         [TestMethod]
-        public void Linq57()
+        public void OfType01()
         {
             object[] numbers = { null, 1.0, "two", 3, "four", 5, "six", 7.0 };
 
