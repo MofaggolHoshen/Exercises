@@ -53,7 +53,7 @@ namespace VariousExcercises
             if ((from?.Address == "hello") || (from?.IsActive == true))
             {
 
-                Console.WriteLine(from?.Address);
+                Debug.WriteLine(from?.Address);
             }
         }
 
