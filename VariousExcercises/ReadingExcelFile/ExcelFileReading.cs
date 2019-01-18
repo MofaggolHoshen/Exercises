@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Xml;
+using System.Globalization;
 
 namespace ReadingExcelFile
 {
@@ -18,11 +19,20 @@ namespace ReadingExcelFile
         [TestMethod]
         public void PrenNext()
         {
-            int i = 0;
-            int j = 0;
+            //int i = 0;
+            //int j = 0;
 
-            int newI = ++i;
-            int newJ = j++;
+            //int newI = ++i;
+            //int newJ = j++;
+
+            //NumberStyles style = NumberStyles.AllowDecimalPoint;
+            CultureInfo provider = new CultureInfo("en-US");
+
+            string k = "Historic Payment Behavior #Weight = 1.0";
+            var kk = k.Split('#');
+            var wvalue = kk.Single(i => i.ToLower().Contains(("Weight").ToLower())).Split('=')[1];
+            var k1 = k.Contains("Weight");
+            var dd = decimal.Parse(wvalue,provider);
         }
         [TestMethod]
         public void TestMethod1()
