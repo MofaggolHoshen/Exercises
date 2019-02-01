@@ -10,9 +10,13 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Xml;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
 
 namespace ReadingExcelFile
 {
+    public class Text {
+        public int? MyProperty { get; set; }
+    }
     [TestClass]
     public class ExcelFileReading
     {
@@ -21,18 +25,21 @@ namespace ReadingExcelFile
         {
             //int i = 0;
             //int j = 0;
+            Text text = new Text();
 
+            var k = text.MyProperty.Value;
             //int newI = ++i;
             //int newJ = j++;
+            //string kkk = "abc";
+            ////var kkkkk = kkk.Substring(, 1);
+            ////NumberStyles style = NumberStyles.AllowDecimalPoint;
+            //CultureInfo provider = new CultureInfo("en-US");
 
-            //NumberStyles style = NumberStyles.AllowDecimalPoint;
-            CultureInfo provider = new CultureInfo("en-US");
-
-            string k = "Historic Payment Behavior #Weight = 1.0";
-            var kk = k.Split('#');
-            var wvalue = kk.Single(i => i.ToLower().Contains(("Weight").ToLower())).Split('=')[1];
-            var k1 = k.Contains("Weight");
-            var dd = decimal.Parse(wvalue,provider);
+            //string k = "Historic Payment Behavior #Weight = 1.0";
+            //var kk = k.Split('#');
+            //var wvalue = kk.Single(i => i.ToLower().Contains(("Weigh7t").ToLower())).Split('=')[1];
+            //var k1 = k.Contains("Weight");
+            //var dd = decimal.Parse(wvalue, provider);
         }
         [TestMethod]
         public void TestMethod1()
