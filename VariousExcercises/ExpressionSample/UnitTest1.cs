@@ -23,8 +23,23 @@ namespace ExpressionSample
         [TestMethod]
         public void ExpessionTree()
         {
-            Expression<del> myET = x => x * x;
+            //Expression<del> myET = x => x * x;
 
+            var str = FuncDelegate(() => true);
+
+        }
+
+        public string FuncDelegate(Func<bool> func)
+        {
+
+           if(func() == true)
+            {
+                return "True";
+            }
+            else
+            {
+                return "False";
+            }
         }
     }
 }
