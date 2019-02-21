@@ -12,6 +12,8 @@ namespace StepWithNavBootstrap.Controllers
     {
         public IActionResult Index()
         {
+            var l = MyMethod();
+
             return View();
         }
 
@@ -38,6 +40,17 @@ namespace StepWithNavBootstrap.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public int MyMethod()
+        {
+            var k = 0;
+            for (int i = 0; i < 1000000000; i++)
+            {
+                k *= i;
+            }
+
+            return k;
         }
     }
 }
