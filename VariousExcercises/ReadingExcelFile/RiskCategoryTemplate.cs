@@ -9,38 +9,43 @@ namespace ReadingExcelFile
     // ToDo: This Template stuff must be linked to 
     // BusinessActivity and ClientCategorization with m:n table
 
-    public class RiskCategoryTemplate 
+    public class RiskCategoryTemplate
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 100, ErrorMessage = "{0} must be less than {1} characters.")]
         public string Name { get; set; }
         [ForeignKey("Tenant")]
+        public Guid TenantId { get; set; }
 
         //[ForeignKey("CaseStepSetup")]
         //public int CaseStepSetupId { get; set; }
 
         //public CaseStepSetup CaseStepSetup { get; set; }
-               
+
         // We should not Include the real RelatedRiskCategories, it might be to heavy to query. It's not necessary
         //public List<RelatedRiskCategory> RelatedRiskCategories { get; set; }
 
         public List<RelatedRiskSubCategoryTemplate> RelatedRiskSubCategoriesTemplate { get; set; }
-              
+
         public DateTime DateCreatedUTC { get; set; }
         public DateTime DateModifiedUTC { get; set; }
         public bool IsActive { get; set; }
+        public decimal Weight { get; set; }
 
-        public RiskCategoryTemplate() {
+        public RiskCategoryTemplate()
+        {
             RelatedRiskSubCategoriesTemplate = new List<RelatedRiskSubCategoryTemplate>();
         }
-        public RiskCategoryTemplate(int id, string name, Guid tenantId)
+        public RiskCategoryTemplate(int id, string name, Guid tenantId, decimal weight)
         {
             Id = id;
             Name = name;
+            TenantId = tenantId;
             //CaseStepSetupId = caseStepSetupId;
-            DateCreatedUTC = DateTime.Now;
-            DateCreatedUTC = DateTime.Now;
+            DateCreatedUTC = DateTime.UtcNow;
+            DateCreatedUTC = DateTime.UtcNow;
             IsActive = true;
+            Weight = weight;
         }
     }
 
@@ -50,9 +55,10 @@ namespace ReadingExcelFile
         [StringLength(maximumLength: 100, ErrorMessage = "{0} must be less than {1} characters.")]
         public string Name { get; set; }
         public int OrderId { get; set; }
+        public decimal Weight { get; set; }
 
         [ForeignKey("RelatedRiskSubCategoryType")]
-        public int RelatedRiskSubCategoryTypeId { get; set; }
+        public int? RelatedRiskSubCategoryTypeId { get; set; }
         public RelatedRiskSubCategoryType RelatedRiskSubCategoryType { get; set; }
 
         [ForeignKey("RiskCategoryTemplate")]
@@ -61,16 +67,18 @@ namespace ReadingExcelFile
 
         public List<RelatedIndicatorTemplate> RelatedIndicatorsTemplate { get; set; }
 
-        public RelatedRiskSubCategoryTemplate() {
+        public RelatedRiskSubCategoryTemplate()
+        {
             RelatedIndicatorsTemplate = new List<RelatedIndicatorTemplate>();
         }
-        public RelatedRiskSubCategoryTemplate(int id, string name, int orderId, int riskCategoryTemplateId, int relatedRistSubCategoryTypeId)
+        public RelatedRiskSubCategoryTemplate(int id, string name, int orderId, int riskCategoryTemplateId, int relatedRistSubCategoryTypeId, decimal weight)
         {
             Id = id;
             Name = name;
             OrderId = orderId;
             RiskCategoryTemplateId = riskCategoryTemplateId;
             RelatedRiskSubCategoryTypeId = relatedRistSubCategoryTypeId;
+            Weight = weight;
         }
     }
 
@@ -80,20 +88,24 @@ namespace ReadingExcelFile
         [StringLength(maximumLength: 100, ErrorMessage = "{0} must be less than {1} characters.")]
         public string Name { get; set; }
         public int OrderId { get; set; }
+        public decimal Weight { get; set; }
+
         [ForeignKey("RelatedRiskSubCategoryTemplate")]
         public int RelatedRiskSubCategoryTemplateId { get; set; }
         public RelatedRiskSubCategoryTemplate RelatedRiskSubCategoryTemplate { get; set; }
         public List<RelatedSubIndicatorTemplate> RelatedSubIndicatorTemplates { get; set; }
 
-        public RelatedIndicatorTemplate() {
+        public RelatedIndicatorTemplate()
+        {
             RelatedSubIndicatorTemplates = new List<RelatedSubIndicatorTemplate>();
         }
-        public RelatedIndicatorTemplate(int id, string name, int orderId, int relatedRiskSubCategoryTemplateId)
+        public RelatedIndicatorTemplate(int id, string name, int orderId, int relatedRiskSubCategoryTemplateId, decimal weight)
         {
             Id = id;
             Name = name;
             OrderId = orderId;
             RelatedRiskSubCategoryTemplateId = relatedRiskSubCategoryTemplateId;
+            Weight = weight;
         }
     }
 
@@ -105,27 +117,30 @@ namespace ReadingExcelFile
         public string Name { get; set; }
         public int OrderId { get; set; }
         public string ImpactText { get; set; }
+        public decimal Weight { get; set; }
 
         [ForeignKey("RelatedIndicatorTemplate")]
         public int RelatedIndicatorTemplateId { get; set; }
         public RelatedIndicatorTemplate RelatedIndicatorTemplate { get; set; }
 
-        public List<RelatedRiskParameterTemplate> RelatedRiskParametersTemplate { get; set; }
+        public List<RelatedSubIndicatorParameterTemplate> RelatedSubIndicatorParameterTemplates { get; set; }
 
-        public RelatedSubIndicatorTemplate() {
-            RelatedRiskParametersTemplate = new List<RelatedRiskParameterTemplate>();
+        public RelatedSubIndicatorTemplate()
+        {
+            RelatedSubIndicatorParameterTemplates = new List<RelatedSubIndicatorParameterTemplate>();
         }
-        public RelatedSubIndicatorTemplate(int id, string name, int orderId, int relatedIndicatorTemplateId, string impactText)
+        public RelatedSubIndicatorTemplate(int id, string name, int orderId, int relatedIndicatorTemplateId, string impactText, decimal weight)
         {
             Id = id;
             Name = name;
             OrderId = orderId;
             RelatedIndicatorTemplateId = relatedIndicatorTemplateId;
             ImpactText = impactText;
+            Weight = weight;
         }
     }
 
-    public class RelatedRiskParameterTemplate
+    public class RelatedSubIndicatorParameterTemplate
     {
         // Answer
         public int Id { get; set; }
@@ -136,20 +151,96 @@ namespace ReadingExcelFile
         [ForeignKey("RelatedSubIndicatorTemplate")]
         public int RelatedSubIndicatorTemplateId { get; set; }
         public RelatedSubIndicatorTemplate RelatedSubIndicatorTemplate { get; set; }
-        public int Weightage { get; set; }
+        public decimal RiskFactor { get; set; }
 
         public bool IsEligibilityCheckRelevant { get; set; }
-        public RelatedRiskParameterTemplate() { }
-        public RelatedRiskParameterTemplate(int id, string name, int orderId, int relatedSubIndicatorTemplateId, int weightage, bool isEligibilityCheckRelevant)
+
+        public bool IsMitigatable { get; set; }
+
+        public List<RelatedMitigationTemplate> RelatedMitigationTemplates { get; set; }
+
+        public RelatedSubIndicatorParameterTemplate()
+        {
+            RelatedMitigationTemplates = new List<RelatedMitigationTemplate>();
+        }
+        public RelatedSubIndicatorParameterTemplate(int id, string name, int orderId, int relatedSubIndicatorTemplateId, int weightage, bool isEligibilityCheckRelevant, bool isMitigatable, decimal riskFactor)
         {
             Id = id;
             Name = name;
             OrderId = orderId;
             RelatedSubIndicatorTemplateId = relatedSubIndicatorTemplateId;
-            Weightage = weightage;
+            RiskFactor = (decimal)weightage;
             IsEligibilityCheckRelevant = isEligibilityCheckRelevant;
+            IsMitigatable = isMitigatable;
+            RiskFactor = riskFactor;
         }
     }
+
+
+    public class RelatedMitigationTemplate
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int OrderId { get; set; }
+
+        [ForeignKey("RelatedSubIndicatorParameter")]
+        public int RelatedSubIndicatorParameterTemplateId { get; set; }
+
+        public RelatedSubIndicatorParameterTemplate RelatedSubIndicatorParameterTemplate { get; set; }
+
+        public List<RelatedMitigationParameterTemplate> RelatedMitigationParameterTemplates { get; set; }
+        
+
+        public RelatedMitigationTemplate()
+        {
+            RelatedMitigationParameterTemplates = new List<RelatedMitigationParameterTemplate>();
+        }
+
+        public RelatedMitigationTemplate(int id, string name, int orderId, int relatedSubIndicatorParameterTemplateId)
+        {
+            Id = id;
+            Name = name;
+            OrderId = orderId;
+            RelatedSubIndicatorParameterTemplateId = relatedSubIndicatorParameterTemplateId;
+
+
+        }
+
+    }
+
+    public class RelatedMitigationParameterTemplate
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int OrderId { get; set; }
+        /// <summary>
+        /// Mitigatigation Factor is in percentage. for example, MitigationFactor = 20%
+        /// </summary>
+        public decimal MitigationFactor { get; set; }
+
+        [ForeignKey("RelatedMitigationTemplate")]
+        public int RelatedMitigationTemplateId { get; set; }
+
+        public RelatedMitigationTemplate RelatedMitigationTemplate { get; set; }
+
+        public RelatedMitigationParameterTemplate()
+        { }
+
+        public RelatedMitigationParameterTemplate(int id, string name, int orderId, int relatedMitigationTemplateId, decimal mitigationFactor)
+        {
+            Id = id;
+            Name = name;
+            OrderId = orderId;
+            RelatedMitigationTemplateId = relatedMitigationTemplateId;
+            MitigationFactor = mitigationFactor;
+        }
+
+    }
+
 
     public class RiskCategoryType
     {

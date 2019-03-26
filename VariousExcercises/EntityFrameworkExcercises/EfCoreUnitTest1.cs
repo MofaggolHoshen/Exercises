@@ -2,6 +2,7 @@ using EntityFrameworkExcercises.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkExcercises
 {
@@ -24,13 +25,12 @@ namespace EntityFrameworkExcercises
                 //         };
 
                 //st.First(i => i.Id == 1).LastName = "Hoshen";
-
-                var stu = context.Students.ToList().Find(i=> i.Id == 2);
+                
                 //stu.LastName = "hoshen hoshen";
                 //context.UpdateRange(st);
 
-                context.SaveChanges();
-            }
+                //context.SaveChanges();
+            } 
         }
 
         [TestMethod]
@@ -41,6 +41,26 @@ namespace EntityFrameworkExcercises
             {
                 var student = context.Students.Find(2);
                 var stu = context.Students.ToList().Find(i => i.Id == 2);
+            }
+        }
+
+        [TestMethod]
+        public void AddNew()
+        {
+            using (var context = new MyDbContext())
+            {
+                var student = context.Students.Add(
+                    new Student()
+                    {
+                        FirstName = "Mofaggol",
+                        Department = "GrouWare",
+                        LastName = "Hoshen",
+                        UniversityName = "FH"
+                    }).Entity;
+
+                context.SaveChanges();
+
+                var id = student.Id;
             }
         }
     }

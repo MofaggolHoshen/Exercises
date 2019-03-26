@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Xml;
 using System.Globalization;
 using Newtonsoft.Json.Linq;
+using ReadingExcelFile.Helper;
 
 namespace ReadingExcelFile
 {
@@ -41,178 +42,13 @@ namespace ReadingExcelFile
             //var k1 = k.Contains("Weight");
             //var dd = decimal.Parse(wvalue, provider);
         }
+
         [TestMethod]
-        public void TestMethod1()
+        public void ReadingExcelFile()
         {
-            SpreadsheetDocument myWorkbook = SpreadsheetDocument.Open(@"C:\Users\m.hoshen\source\repos\Exercises\VariousExcercises\ReadingExcelFile\Files\Book1.xlsx", true);
-            WorkbookPart workbookPart = myWorkbook.WorkbookPart;
-            Workbook workbook = workbookPart.Workbook;
-            IEnumerable<Sheet> sheets = workbook.Descendants<Sheet>();
-
-            foreach (var sheet in sheets)
-            {
-                WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-                IEnumerable<Row> rows = worksheetPart.Worksheet.GetFirstChild<SheetData>().Descendants<Row>();
-                SharedStringTablePart sharedStringPart = workbookPart.SharedStringTablePart;
-                SharedStringItem[] values = sharedStringPart.SharedStringTable.Elements<SharedStringItem>().ToArray();
-
-                RiskCategoryTemplate template = template = new RiskCategoryTemplate();
-
-                int relatedRiskSubCategoryTemplateIndex = 0;
-                int relatedIndicatorTemplateIndex = 0;
-                int relatedSubIndicatorTemplateIndex = 0;
-
-                //var mergeCells = worksheetPart.Worksheet.Descendants<MergeCells>().OrderBy(i => i.ChildElements).ToList();
-
-                //foreach (MergeCells mergeCell in mergeCells)
-                //{
-                //    var mergeCel = mergeCell.ChildElements.OrderBy(i=> (i as MergeCell).Reference.Value);
-
-                //    foreach (MergeCell item in mergeCel)
-                //    {
-                //        var refValue = item.Reference.Value;
-                //    }
-                //}
-
-                foreach (var row in rows)
-                {
-                    if (row.RowIndex > 1)
-                    {
-                        foreach (Cell cell in row.ChildElements)
-                        {
-                            try
-                            {
-                                if (cell.CellReference.Value.StartsWith("A")) // RiskCategoryTemplate
-                                {
-                                    var riskCategoryTemplateValue = GetValue(cell, values);
-
-                                    if (!String.IsNullOrEmpty(riskCategoryTemplateValue))
-                                    {
-                                        template.Name = riskCategoryTemplateValue;
-                                    }
-
-                                }
-                                else if (cell.CellReference.Value.StartsWith("B")) // RelatedRiskSubCategoryTemplate
-                                {
-                                    var relatedRiskSubCategoryTemplateValue = GetValue(cell, values);
-
-                                    if (!String.IsNullOrEmpty(relatedRiskSubCategoryTemplateValue))
-                                    {
-                                        template.RelatedRiskSubCategoriesTemplate.Add(new RelatedRiskSubCategoryTemplate()
-                                        {
-                                            Name = relatedRiskSubCategoryTemplateValue
-                                        });
-                                    }
-
-                                }
-                                else if (cell.CellReference.Value.StartsWith("C")) // RelatedIndicatorTemplate
-                                {
-                                    var relatedIndicatorTemplateVlaue = GetValue(cell, values);
-
-                                    if (!String.IsNullOrEmpty(relatedIndicatorTemplateVlaue))
-                                    {
-                                        relatedRiskSubCategoryTemplateIndex = template.RelatedRiskSubCategoriesTemplate.Count() - 1;
-
-                                        template.RelatedRiskSubCategoriesTemplate[relatedRiskSubCategoryTemplateIndex]
-                                                                                .RelatedIndicatorsTemplate.Add(new RelatedIndicatorTemplate()
-                                                                                {
-                                                                                    Name = relatedIndicatorTemplateVlaue
-                                                                                });
-
-                                    }
-
-                                }
-                                else if (cell.CellReference.Value.StartsWith("D")) // RelatedSubIndicatorTemplate
-                                {
-                                    var relatedSubIndicatorTemplateValue = GetValue(cell, values);
-
-                                    if (!String.IsNullOrEmpty(relatedSubIndicatorTemplateValue))
-                                    {
-                                        relatedIndicatorTemplateIndex = template.RelatedRiskSubCategoriesTemplate[relatedRiskSubCategoryTemplateIndex]
-                                                                                                                 .RelatedIndicatorsTemplate.Count() - 1;
-
-                                        template.RelatedRiskSubCategoriesTemplate[relatedRiskSubCategoryTemplateIndex]
-                                                                                 .RelatedIndicatorsTemplate[relatedIndicatorTemplateIndex]
-                                                                                 .RelatedSubIndicatorTemplates.Add(new RelatedSubIndicatorTemplate()
-                                                                                 {
-                                                                                     Name = relatedSubIndicatorTemplateValue
-                                                                                 });
-
-
-                                    }
-                                }
-                                else if (cell.CellReference.Value.StartsWith("E")) // RelatedRiskParameterTemplate
-                                {
-                                    var relatedRiskParameterTemplateValue = GetValue(cell, values);
-
-                                    if (!String.IsNullOrEmpty(relatedRiskParameterTemplateValue))
-                                    {
-                                        relatedSubIndicatorTemplateIndex = template.RelatedRiskSubCategoriesTemplate[relatedRiskSubCategoryTemplateIndex]
-                                                                                                                    .RelatedIndicatorsTemplate[relatedIndicatorTemplateIndex]
-                                                                                                                    .RelatedSubIndicatorTemplates.Count() - 1;
-
-                                        template.RelatedRiskSubCategoriesTemplate[relatedRiskSubCategoryTemplateIndex]
-                                                                                 .RelatedIndicatorsTemplate[relatedIndicatorTemplateIndex]
-                                                                                 .RelatedSubIndicatorTemplates[relatedSubIndicatorTemplateIndex]
-                                                                                 .RelatedRiskParametersTemplate.Add(new RelatedRiskParameterTemplate()
-                                                                                 {
-                                                                                     Name = relatedRiskParameterTemplateValue
-                                                                                 });
-                                    }
-                                }
-                                //else if (cell.CellReference.Value.StartsWith("F")) // Mitigarion
-                                //{
-                                //    var mitigationValue = GetValue(cell, values);
-                                //}
-                                //else if (cell.CellReference.Value.StartsWith("G")) // Mitigatrion Parameter
-                                //{
-                                //    var mitigationParameterValue = GetValue(cell, values);
-                                //}
-                            }
-                            catch (Exception ex)
-                            {
-
-                                throw;
-                            }
-                        }
-                    }
-                }
-
-            }
-
-
-            //var xmlStr = GetXML(@"C:\Users\m.hoshen\source\repos\Exercises\VariousExcercises\ReadingExcelFile\Files\Book1.xlsx");
-
+            var file = File.OpenRead(@"C:\Users\m.hoshen\source\repos\Exercises\VariousExcercises\ReadingExcelFile\Files\QualitativeAssessmentTemplateSample.xlsx");
+            var template = ExcelHelper.ExcelToRiskCategoryTemplate(file, Guid.Parse("22F2A5C6-D200-4BF9-967E-0B6571EB5721"));
         }
-
-        private String GetValue(Cell cell, SharedStringItem[] values)
-        {
-            string value = String.Empty;
-            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-            {
-                int index = int.Parse(cell.CellValue.Text);
-                value = values[index].InnerText;
-            }
-            else if (cell.DataType != null && cell.DataType.Value == CellValues.InlineString)
-            {
-                value = cell.InnerText;
-            }
-            else
-            {
-                if (cell.CellValue != null)
-                {
-                    value = cell.CellValue.Text;
-                }
-            }
-
-            if (cell.CellFormula != null)
-            {
-                value = cell.CellFormula.Text;
-            }
-
-            return value.Trim();
-        }
-
         public string GetXML(string filename)
         {
             using (DataSet ds = new DataSet())
