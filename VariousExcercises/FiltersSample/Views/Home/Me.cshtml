@@ -1,0 +1,14 @@
+﻿@model FiltersSample.Domain.Person;
+@{
+    ViewData["Title"] = "Me";
+}
+
+<h2>Me</h2>
+<label>First Name: </label> 
+<label>@Model.FirstName</label><br />
+<label>Last Name: </label> 
+<label>@Model.LastName</label><br />
+<label>City Name: </label> 
+<label>@Model.Address.City</label><br />
+<label>Country Name: </label> 
+<label>@Model.Address.Country</label>
