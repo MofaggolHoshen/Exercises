@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+</head>
+<body>
+    <form action="/" method="post" onsubmit="return clickMe(this)">
+        <input type="radio" name="a" value="mail" checked /> Mail
+        <input type="radio" name="a" value="femail" />Femail
+        <input type="submit" />
+    </form>
+    <form action="/" method="post" onsubmit="">
+        <input type="submit" onclick="return isDelete()"/>
+    </form>
+</body>
+</html>
+
+<script>
+    function clickMe(form) {
+
+        //var value = document.getElementsByTagName("input");
+        //var radioValue = $("input[name='a']:checked").val();
+
+        //var gender = document.querySelector('input[name = "gender"]:checked').value;
+        var radio1 = form.querySelector('input name=a checked').value;
+        alert(radioValue);
+        }
+
+    function isDelete() {
+        return confirm("Are you sure?");
+    }
+</script>
