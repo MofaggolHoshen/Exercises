@@ -1,0 +1,23 @@
+﻿@model FiltersSample.Domain.Person;
+@{
+    ViewData["Title"] = "Me";
+
+    string uri = string.Empty;
+
+}
+
+<form asp-action="SaveNgoBack" asp-controller="SumitGoBack" method="post">
+    <label>First Name: </label>
+    <input type="text" asp-for="FirstName" /><br />
+    <label>Last Name: </label>
+    <input type="text" asp-for="LastName"><br />
+    <label>City: </label>
+    <input type="text" asp-for="Address.City"><br />
+    <label>Country: </label>
+    <input type="text" asp-for="Address.Country"><br />
+    <button type="submit">Save</button>
+</form>
+
+<div id="imageChanged">
+    <partial name="Partial/PatialViewImage" model="new ViewModel() { ImSrc = Model.ImSrc}" />
+</div>
