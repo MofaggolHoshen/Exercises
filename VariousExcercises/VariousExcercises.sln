@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkExcercises",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionExcercises", "ReflectionExcercises\ReflectionExcercises.csproj", "{2384A778-7092-4C61-8479-9BF66AE3E5C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiltersSample", "FiltersSample\FiltersSample.csproj", "{DB93590C-24E0-4A72-B9ED-05DB1C6A074C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreSample", "CoreSample\CoreSample.csproj", "{DB93590C-24E0-4A72-B9ED-05DB1C6A074C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JSExcercises", "JSExcercises", "{FA2F8B68-6445-42AF-B92C-C7765F83E54A}"
 	ProjectSection(SolutionItems) = preProject
