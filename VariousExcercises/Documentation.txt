@@ -1,0 +1,2 @@
+1. Doc: https://jqueryvalidation.org/
+2. Demo: https://jqueryvalidation.org/files/demo/#

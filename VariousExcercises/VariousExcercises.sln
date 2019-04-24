@@ -21,9 +21,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionExcercises", "Ref
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreSample", "CoreSample\CoreSample.csproj", "{DB93590C-24E0-4A72-B9ED-05DB1C6A074C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JSExcercises", "JSExcercises", "{FA2F8B68-6445-42AF-B92C-C7765F83E54A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JsAndCssExcercises", "JsAndCssExcercises", "{FA2F8B68-6445-42AF-B92C-C7765F83E54A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JS", "JS", "{F1B8F52C-2C20-48DD-BE3F-15DDB3711319}"
 	ProjectSection(SolutionItems) = preProject
 		FormValidation.html = FormValidation.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrap-4", "Bootstrap-4", "{18C8195E-0D55-4739-8F00-773EA87E26E7}"
+	ProjectSection(SolutionItems) = preProject
+		form-inline.html = form-inline.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jQuery", "jQuery", "{D9C1A1D3-039D-4A41-99A2-155EC6356BA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validation", "Validation", "{4B92D085-0F11-4E4E-969C-96DBFFA98FFF}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation.txt = Documentation.txt
+		FormValidation-1.html = FormValidation-1.html
 	EndProjectSection
 EndProject
 Global
@@ -71,6 +86,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F1B8F52C-2C20-48DD-BE3F-15DDB3711319} = {FA2F8B68-6445-42AF-B92C-C7765F83E54A}
+		{18C8195E-0D55-4739-8F00-773EA87E26E7} = {FA2F8B68-6445-42AF-B92C-C7765F83E54A}
+		{D9C1A1D3-039D-4A41-99A2-155EC6356BA7} = {F1B8F52C-2C20-48DD-BE3F-15DDB3711319}
+		{4B92D085-0F11-4E4E-969C-96DBFFA98FFF} = {D9C1A1D3-039D-4A41-99A2-155EC6356BA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C65ABB4-902B-44FA-83B8-20661FD980F0}

@@ -35,5 +35,16 @@ namespace FiltersSample.Controllers
 
             return View();
         }
+
+        private void HandleNewJImage(object sender, FileSystemEventArgs e)
+        {
+           // TODO: This event can not return your view.
+        }
+
+        public IActionResult PartialViewImage()
+        {
+
+            return PartialView("Your-View-Name");
+        }
     }
 }

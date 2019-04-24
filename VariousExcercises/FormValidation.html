@@ -13,8 +13,10 @@
         <input type="submit" />
     </form>
     <form action="/" method="post" onsubmit="">
-        <input type="submit" onclick="return isDelete()"/>
+        <input type="submit" onclick="return isDelete()" />
     </form>
+
+    <input type="submit" onclick="return getResult()" />
 </body>
 </html>
 
@@ -31,5 +33,24 @@
 
     function isDelete() {
         return confirm("Are you sure?");
+        }
+
+
+    function getResult() {
+
+        const subCategories = getSubCategory();
+
+        console.log(subCategories);
+
+
+    }
+    function getSubCategory() {
+        var categoriesWithSub = [{ id: 1, catName: "test", subCategories: ["test1","test2"] }, { id: 2, catName: "test", subCategories: ["test1","test2"] }]
+        var catId = 1;
+
+        for (var category = 0; category < categoriesWithSub.length; category++) {
+             if (categoriesWithSub[category].id == 1)
+                return categoriesWithSub[category].subCategories;
+        }
     }
 </script>
