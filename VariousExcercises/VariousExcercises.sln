@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validation", "Validation", 
 	ProjectSection(SolutionItems) = preProject
 		Documentation.txt = Documentation.txt
 		FormValidation-1.html = FormValidation-1.html
+		FormValidation-debug.html = FormValidation-debug.html
+		FormValidation-rules.html = FormValidation-rules.html
 	EndProjectSection
 EndProject
 Global

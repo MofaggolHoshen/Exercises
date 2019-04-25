@@ -8,21 +8,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script>
         $(document).ready(function () {
-            $("#commentForm").validate();
+            $("#commentForm").validate({
+                debug: false
+            });
         });
     </script>
     <style>
-      #commentForm {
-          width: 500px;
-      }
+        #commentForm {
+            width: 500px;
+        }
 
-      #commentForm label {
-          width: 250px;
-      }
+            #commentForm label {
+                width: 250px;
+            }
 
-      #commentForm label.error, #commentForm input.submit {
-          margin-left: 253px;
-      }
+                #commentForm label.error, #commentForm input.submit {
+                    margin-left: 253px;
+                }
     </style>
 </head>
 <body>
