@@ -13,8 +13,12 @@ namespace EntityFrameworkExcercises.Entities
 
         private HashSet<StudentSubject> _studentSubjects;
 
-        public IEnumerable<StudentSubject> StudentSubjects => _studentSubjects?.ToList();
+        public List<StudentSubject> StudentSubjects { get; private set; }
 
+        public Subject()
+        {
+            StudentSubjects = new List<StudentSubject>();
+        }
         public Subject(int id, string name, bool isMain)
         {
             Id = id;

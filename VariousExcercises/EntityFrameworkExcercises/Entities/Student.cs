@@ -12,20 +12,47 @@ namespace EntityFrameworkExcercises.Entities
         public string LastName { get; private set; }
         public string Department { get; private set; }
         public string UniversityName { get; private set; }
-        private HashSet<StudentSubject> _studentSubjects;
-        public List<StudentSubject> StudentSubjects => _studentSubjects?.ToList();
+        //private HashSet<StudentSubject> _studentSubjects;
+        public ICollection<StudentSubject> StudentSubjects { get; private set; }
 
         public Student()
         {
-
+            StudentSubjects = new List<StudentSubject>();
         }
-        public Student(int id, string firstName, string lastName, string department, string university)
+
+        public Student(string firstName, string lastName, string department, string university)
         {
-            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Department = department;
             UniversityName = university;
+        }
+
+        /// <summary>
+        /// For sead method 
+        /// </summary>
+        public Student(int id, string firstName, string lastName, string department, string university) 
+                : this( firstName,  lastName,  department,  university)
+        {
+            Id = id;
+        }
+
+
+        public void SetFirstName(string firstName)
+        {
+
+            this.FirstName = firstName;
+        }
+
+        public void SetLastName(string lastName)
+        {
+
+            this.LastName = lastName;
+        }
+
+        public void SetDepartment(string department)
+        {
+            this.Department = department;
         }
     }
 }

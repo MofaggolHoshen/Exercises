@@ -8,11 +8,11 @@ namespace EntityFrameworkExcercises.Entities
 {
     public class StudentSubject
     {
-        //[ForeignKey("Student")]
+        [ForeignKey("Student")]
         public int StudentId { get; private set; }
         public Student Student { get; private set; }
 
-        //[ForeignKey("Subject")]
+        [ForeignKey("Subject")]
         public int SubjectId { get; private set; }
         public Subject Subject { get; private set; }
 
