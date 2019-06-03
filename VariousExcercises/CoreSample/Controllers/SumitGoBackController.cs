@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using FiltersSample.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +47,34 @@ namespace FiltersSample.Controllers
         {
 
             return PartialView("Your-View-Name");
+        }
+
+        public async Task SendEmail(string email, string subject, string message)
+        {
+            using (var client = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "",
+                    Password = ""
+                };
+
+                client.Credentials = credential;
+                client.Host = "";
+                client.Port = 402;
+                client.EnableSsl = true;
+
+                using (var emailMessage = new MailMessage())
+                {
+                    emailMessage.To.Add(new MailAddress(email));
+                    emailMessage.CC.Add("");
+                    emailMessage.From = new MailAddress("");
+                    emailMessage.Subject = subject;
+                    emailMessage.Body = message;
+                    client.Send(emailMessage);
+                }
+            }
+            await Task.CompletedTask;
         }
     }
 }

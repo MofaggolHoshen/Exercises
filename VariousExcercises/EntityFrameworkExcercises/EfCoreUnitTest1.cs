@@ -49,18 +49,16 @@ namespace EntityFrameworkExcercises
         {
             using (var context = new MyDbContext())
             {
-                var student = context.Students.Add(
-                    new Student()
-                    {
-                        FirstName = "Mofaggol",
-                        Department = "GrouWare",
-                        LastName = "Hoshen",
-                        UniversityName = "FH"
-                    }).Entity;
+                //var student = context.Students.Add(new Student(1, "Mofaggol", "Hoshen", "Information Technology", "FH Frankfurnt")).Entity;
 
-                context.SaveChanges();
+                //context.SaveChanges();
 
-                var id = student.Id;
+                //var id = student.Id;
+
+                var student = context.Students.Where(i => i.Id == 2).Concat(context.Students
+                                     .Where(i => i.Id == 1));
+
+                var list = student.ToList();
             }
         }
     }
