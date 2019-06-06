@@ -14,7 +14,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
         [TestMethod]
         public void GetStudentWithNavigationPro()
         {
-            using (var context = new MyDbContext())
+            using (var context = new ObjectOrientedDbContext())
             {
                 var st = context.Students
                                 .Include(i=> i.StudentSubjects)
@@ -26,7 +26,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
         [TestMethod]
         public void Update()
         {
-            using (var context = new MyDbContext())
+            using (var context = new ObjectOrientedDbContext())
             {
                 var st = context.Students.Single(i=> i.Id == 1);
                 st.SetFirstName("Mofaggol23");
@@ -38,7 +38,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
         [TestMethod]
         public void Insert()
         {
-            using (var context = new MyDbContext())
+            using (var context = new ObjectOrientedDbContext())
             {
                 var st = new Student(firstName: "Matthias", lastName: "Stahl", department: "GroupWare", university: "Quipu");
 

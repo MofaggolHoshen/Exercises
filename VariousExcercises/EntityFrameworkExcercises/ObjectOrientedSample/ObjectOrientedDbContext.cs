@@ -7,12 +7,12 @@ using System.Text;
 
 namespace EntityFrameworkExcercises.ObjectOrientedSample
 {
-    public class MyDbContext : DbContext
+    public class ObjectOrientedDbContext : DbContext
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
-        public MyDbContext()
+        public ObjectOrientedDbContext()
         {
             Database.EnsureCreated();
         }
