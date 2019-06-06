@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using EntityFrameworkExcercises.Entities;
 
-namespace EntityFrameworkExcercises
+namespace EntityFrameworkExcercises.ObjectOrientedSample
 {
     [TestClass]
     public class FunctionTesting

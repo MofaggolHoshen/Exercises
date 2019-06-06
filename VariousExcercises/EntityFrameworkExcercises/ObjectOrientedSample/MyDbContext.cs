@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EntityFrameworkExcercises
+namespace EntityFrameworkExcercises.ObjectOrientedSample
 {
     public class MyDbContext : DbContext
     {
