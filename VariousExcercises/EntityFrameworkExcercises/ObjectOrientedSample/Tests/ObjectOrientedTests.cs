@@ -38,6 +38,26 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
         }
 
         [TestMethod]
+        public void Update2()
+        {
+            using(var context = new ObjectOrientedDbContext())
+            {
+                var st = context.Students
+                                //.AsNoTracking()
+                                .Single(i => i.Id == 1);
+                st.SetFirstName("Mofaggol123");
+
+                context.Students.Attach(st);
+
+                context.Entry(st).Property(i => i.LastName).IsModified = true;
+
+                context.SaveChanges();
+
+                var st1 = context.Students.Single(i => i.Id == 1);
+            }
+        }
+
+        [TestMethod]
         public void Insert()
         {
             using (var context = new ObjectOrientedDbContext())
@@ -51,6 +71,5 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
                 var st2 = context.Students.Single(i => i.FirstName == "Matthias-1");
             }
         }
-
     }
 }
