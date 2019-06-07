@@ -19,7 +19,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=EfExcercise;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=OOP;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

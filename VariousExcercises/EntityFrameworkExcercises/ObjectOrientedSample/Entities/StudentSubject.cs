@@ -16,7 +16,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample.Entities
         public int SubjectId { get; private set; }
         public Subject Subject { get; private set; }
 
-        public StudentSubject()
+        private StudentSubject()
         {
 
         }

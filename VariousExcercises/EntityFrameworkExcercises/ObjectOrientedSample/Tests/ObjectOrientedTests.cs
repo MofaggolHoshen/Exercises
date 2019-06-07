@@ -29,7 +29,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
             using (var context = new ObjectOrientedDbContext())
             {
                 var st = context.Students.Single(i=> i.Id == 1);
-                st.SetFirstName("Mofaggol");
+                st.SetFirstName("Mofaggol123");
 
                 context.SaveChanges();
 
@@ -51,5 +51,6 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
                 var st2 = context.Students.Single(i => i.FirstName == "Matthias-1");
             }
         }
+
     }
 }

@@ -15,7 +15,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample.Entities
 
         public List<StudentSubject> StudentSubjects { get; private set; }
 
-        public Subject()
+        private Subject()
         {
             StudentSubjects = new List<StudentSubject>();
         }

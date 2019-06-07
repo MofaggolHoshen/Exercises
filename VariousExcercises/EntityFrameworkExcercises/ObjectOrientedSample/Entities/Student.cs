@@ -15,7 +15,7 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample.Entities
         //private HashSet<StudentSubject> _studentSubjects;
         public ICollection<StudentSubject> StudentSubjects { get; private set; }
 
-        public Student()
+        private Student()
         {
             StudentSubjects = new List<StudentSubject>();
         }
