@@ -1,4 +1,4 @@
-﻿using EntityFrameworkExcercises.Entities;
+﻿using EntityFrameworkExcercises.ObjectOrientedSample.Entities;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using System;

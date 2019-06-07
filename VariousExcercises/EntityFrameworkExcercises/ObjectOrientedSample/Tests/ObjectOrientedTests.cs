@@ -4,12 +4,12 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using EntityFrameworkExcercises.Entities;
+using EntityFrameworkExcercises.ObjectOrientedSample.Entities;
 
 namespace EntityFrameworkExcercises.ObjectOrientedSample
 {
     [TestClass]
-    public class FunctionTesting
+    public class ObjectOrientedTests
     {
         [TestMethod]
         public void GetStudentWithNavigationPro()
@@ -29,9 +29,11 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
             using (var context = new ObjectOrientedDbContext())
             {
                 var st = context.Students.Single(i=> i.Id == 1);
-                st.SetFirstName("Mofaggol23");
+                st.SetFirstName("Mofaggol123");
 
                 context.SaveChanges();
+
+                var st2 = context.Students.Single(i => i.Id == 1);
             }
         }
 
@@ -47,6 +49,5 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
                 context.SaveChanges();
             }
         }
-
     }
 }

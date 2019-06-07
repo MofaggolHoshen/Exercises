@@ -9,7 +9,7 @@ using EntityFrameworkExcercises.FluentApiSamples.Entities;
 namespace EntityFrameworkExcercises.FluentApiSamples.Tests
 {
     [TestClass]
-    public class OneToManyTest
+    public class OneToManyTests
     {
         [TestMethod]
         public void GetOneToManyData()
