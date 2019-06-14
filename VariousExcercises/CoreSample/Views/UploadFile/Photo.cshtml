@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Upload Picture";
+}
+
+@model CoreSample.ViewModels.UserViewModel
+
+<form method="post"
+      asp-action="Photo"
+      asp-controller="UploadFile"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input asp-for="Photo" />
+    <span asp-validation-for="Photo" class="text-danger"></span>
+    <input type="submit" value="Upload" />
+</form>
