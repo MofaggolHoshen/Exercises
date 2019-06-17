@@ -1,4 +1,5 @@
 ﻿using CoreSample.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace CoreSample.Controllers
         [HttpGet]
         public IActionResult Photo()
         {
+            var brows = Request.Headers["User-Agent"].ToString();
+
             return View();
         }
 

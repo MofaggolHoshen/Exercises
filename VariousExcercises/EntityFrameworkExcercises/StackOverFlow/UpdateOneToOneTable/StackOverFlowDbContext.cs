@@ -1,10 +1,10 @@
-﻿using EntityFrameworkExcercises.StackOverFlow.Entities.UpdateOneToOneTable;
+﻿using EntityFrameworkExcercises.StackOverFlow.UpdateOneToOneTable.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EntityFrameworkExcercises.StackOverFlow
+namespace EntityFrameworkExcercises.StackOverFlow.UpdateOneToOneTable
 {
     public class StackOverFlowDbContext : DbContext
     {

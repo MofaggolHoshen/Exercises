@@ -1,5 +1,9 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "Upload Picture";
+
+    var browser = HttpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
 }
 
 @model CoreSample.ViewModels.UserViewModel

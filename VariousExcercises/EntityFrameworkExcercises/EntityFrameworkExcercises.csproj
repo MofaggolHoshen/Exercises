@@ -14,4 +14,8 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.0.0-beta4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StackOverFlow\CauseCyclesOrMultipleCascade\Entities\" />
+  </ItemGroup>
+
 </Project>

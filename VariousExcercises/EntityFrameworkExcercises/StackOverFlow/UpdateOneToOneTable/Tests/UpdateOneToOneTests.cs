@@ -1,12 +1,12 @@
-﻿using EntityFrameworkExcercises.StackOverFlow.Entities.UpdateOneToOneTable;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using EntityFrameworkExcercises.StackOverFlow.UpdateOneToOneTable.Entities;
 
-namespace EntityFrameworkExcercises.StackOverFlow.Tests
+namespace EntityFrameworkExcercises.StackOverFlow.UpdateOneToOneTable.Tests
 {
     [TestClass]
     public class UpdateOneToOneTests

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EntityFrameworkExcercises.StackOverFlow.Entities.UpdateOneToOneTable
+namespace EntityFrameworkExcercises.StackOverFlow.UpdateOneToOneTable.Entities
 {
     public class Step
     {

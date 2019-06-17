@@ -29,6 +29,8 @@ namespace FiltersSample
             services.AddScoped<IOrganizationalCheckService,OrganizationalCheckService>();
             services.AddScoped<GetModelFromActionFilterAttribute>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddMvc(option=>
             {
                 //option.Filters.Add(typeof(SampleActionFilterAttribute));
