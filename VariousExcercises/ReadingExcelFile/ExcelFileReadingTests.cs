@@ -15,11 +15,16 @@ using ReadingExcelFile.Helper;
 
 namespace ReadingExcelFile
 {
+    /*
+     * https://docs.microsoft.com/en-us/office/open-xml/open-xml-sdk
+     * https://docs.microsoft.com/en-us/dotnet/api/overview/openxml/
+     * http://polymathprogrammer.com/2012/03/27/open-xml-sdk-class-structure/
+     */
     public class Text {
         public int? MyProperty { get; set; }
     }
     [TestClass]
-    public class ExcelFileReading
+    public class ExcelFileReadingTests
     {
         [TestMethod]
         public void PrenNext()

@@ -71,5 +71,15 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
                 var st2 = context.Students.Single(i => i.FirstName == "Matthias-1");
             }
         }
+
+        [TestMethod]
+        public void LikeTest()
+        {
+
+            using (var context = new ObjectOrientedDbContext())
+            {
+                var stds = context.Students.Where(i => EF.Functions.Like(i.StudentSubjects.Single().Student.FirstName, "%" + i.FirstName + "%")).ToList();
+            }
+        }
     }
 }
