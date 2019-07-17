@@ -49,6 +49,20 @@ namespace ReadingExcelFile
         }
 
         [TestMethod]
+        public void ReadingExcel()
+        {
+            var file = File.OpenRead(@"C:\Users\m.hoshen\source\repos\Exercises\VariousExcercises\ReadingExcelFile\Files\QualitativeAssessmentTemplateSample.xlsx");
+
+            SpreadsheetDocument spreadsheet = SpreadsheetDocument.Open(file, false);
+            var sheet = spreadsheet.WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault();
+            var worksheetPart =(WorksheetPart) spreadsheet.WorkbookPart.GetPartById(sheet.Id);
+            var sheetData = worksheetPart.Worksheet.Descendants<SheetData>().FirstOrDefault();
+            var row = sheetData.Descendants<Row>().FirstOrDefault();
+            var cell = row.ChildElements.First();
+
+        }
+
+        [TestMethod]
         public void ReadingExcelFile()
         {
             var file = File.OpenRead(@"C:\Users\m.hoshen\source\repos\Exercises\VariousExcercises\ReadingExcelFile\Files\QualitativeAssessmentTemplateSample.xlsx");

@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace VariousExcercises
 {
@@ -11,6 +12,10 @@ namespace VariousExcercises
         [TestMethod]
         public void And01()
         {
+
+            var kk = "Are weeding control measures (mechanically or by hand) being taken during crucial period of plant growth";
+            var length = kk.Length;
+
             // Each method displays a message and returns a Boolean value. 
             // Method1 returns false and Method2 returns true. When & is used,
             // both methods are called. 
@@ -39,6 +44,14 @@ namespace VariousExcercises
         {
             Debug.WriteLine("Method2 called.");
             return false;
-        } 
+        }
+
+        [TestMethod]
+        public void MyMethod()
+        {
+            var str = "I am Mofaggol Hoshen!";
+
+            var s = String.Join(" ", str.Split(' ').Skip(1));
+        }
     }
 }
