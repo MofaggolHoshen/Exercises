@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 
 namespace FiltersSample.Filters
 {
-    #region snippet_TypeFilter_Implementation
     public class LogConstantFilter : IActionFilter
     {
         private readonly string _value;
@@ -23,5 +22,4 @@ namespace FiltersSample.Filters
         public void OnActionExecuted(ActionExecutedContext context)
         { }
     }
-    #endregion
 }

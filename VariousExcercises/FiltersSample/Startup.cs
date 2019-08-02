@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FiltersSample.Services;
+using FiltersSample.Filters;
 
 namespace FiltersSample
 {
@@ -33,6 +34,7 @@ namespace FiltersSample
             //});
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ServiceFilterSample>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

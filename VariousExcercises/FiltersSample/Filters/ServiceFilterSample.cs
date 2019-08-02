@@ -3,16 +3,25 @@ using Microsoft.Extensions.Logging;
 
 namespace FiltersSample.Filters
 {
-    /// <summary>
-    /// https://github.com/aspnet/Mvc/blob/master/test/WebSites/FiltersWebSite/Filters/AddHeaderAttribute.cs
-    /// </summary>
-    #region snippet_ResultFilter
-    public class AddHeaderFilterWithDi : IResultFilter
+    /*
+     * It a sample of Service Filter
+     * 
+     * A filter that surrounds execution of action results successfully returned from
+     * an action.
+     * 
+     * In Startup.cs
+     *      services.AddScoped<ServiceFilterSample>();
+     * 
+     * In Controller or Action 
+     *      [ServiceFilter(typeof(ServiceFilterSample))]
+     * 
+     */
+    public class ServiceFilterSample : IResultFilter
     {
         private ILogger _logger;
-        public AddHeaderFilterWithDi(ILoggerFactory loggerFactory)
+        public ServiceFilterSample(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<AddHeaderFilterWithDi>();
+            _logger = loggerFactory.CreateLogger<ServiceFilterSample>();
         }
 
         public void OnResultExecuting(ResultExecutingContext context)
@@ -28,5 +37,4 @@ namespace FiltersSample.Filters
             // Can't add to headers here because response has already begun.
         }
     }
-    #endregion
 }

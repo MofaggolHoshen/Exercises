@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
-    public class SampleResourceFilterAttribute : Attribute,
-            IResourceFilter
+    public class SampleResourceFilterAttribute : Attribute, IResourceFilter
     {
         public string Name { get; }
 

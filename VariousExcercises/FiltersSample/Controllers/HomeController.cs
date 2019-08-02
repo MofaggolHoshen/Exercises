@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using FiltersSample.Models;
 using FiltersSample.Services;
 using FiltersSample.Filters;
+using System.Globalization;
 
 namespace FiltersSample.Controllers
 {
@@ -18,9 +19,12 @@ namespace FiltersSample.Controllers
         {
             userService = user;
         }
-        
+
+        //[TypeFilterSample]
+        //[ServiceFilter(typeof(ServiceFilterSample))]
         public IActionResult Index()
         {
+            var r = 20;
             return View();
         }
 
@@ -33,6 +37,21 @@ namespace FiltersSample.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [TypeFilter(typeof(LogConstantFilter),
+            Arguments = new object[] { "Method 'Hi' called" })]
+        public IActionResult Hi(string name)
+        {
+            return Content($"Hi {name}");
+        }
+
+        [Route("{culture}/[controller]/[action]")]
+        [MiddlewareFilter(typeof(LocalizationPipeline))]
+        public IActionResult CultureFromRouteData()
+        {
+            return Content($"CurrentCulture:{CultureInfo.CurrentCulture.Name},"
+                + $"CurrentUICulture:{CultureInfo.CurrentUICulture.Name}");
         }
     }
 }

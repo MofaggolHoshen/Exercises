@@ -4,10 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace FiltersSample.Filters
 {
-    #region snippet_TypeFilterAttribute
-    public class SampleActionFilterAttribute : TypeFilterAttribute
+    public class TypeFilterSampleAttribute : TypeFilterAttribute
     {
-        public SampleActionFilterAttribute():base(typeof(SampleActionFilterImpl))
+        public TypeFilterSampleAttribute(): base(typeof(SampleActionFilterImpl))
         {
         }
 
@@ -16,7 +15,7 @@ namespace FiltersSample.Filters
             private readonly ILogger _logger;
             public SampleActionFilterImpl(ILoggerFactory loggerFactory)
             {
-                _logger = loggerFactory.CreateLogger<SampleActionFilterAttribute>();
+                _logger = loggerFactory.CreateLogger<TypeFilterSampleAttribute>();
             }
 
             public void OnActionExecuting(ActionExecutingContext context)
@@ -33,5 +32,4 @@ namespace FiltersSample.Filters
             }
         }
     }
-    #endregion
 }

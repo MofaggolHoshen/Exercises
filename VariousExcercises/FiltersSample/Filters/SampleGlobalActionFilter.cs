@@ -5,6 +5,14 @@ namespace FiltersSample.Filters
 {
     public class SampleGlobalActionFilter : IActionFilter
     {
+        /*
+         * Global filter should be in Starup.cs
+         * 
+         * services.AddMvc(options =>
+            {
+                options.Filters.Add(new SampleGlobalActionFilter());
+            });
+         */
         public void OnActionExecuting(ActionExecutingContext context)
         {
             if (context.ActionDescriptor.DisplayName == "FiltersSample.Controllers.HomeController.Hello")

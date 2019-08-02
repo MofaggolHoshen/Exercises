@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace FiltersSample.Filters
 {
-    #region snippet_MiddlewareFilter
     public class LocalizationPipeline
     {
         public void Configure(IApplicationBuilder applicationBuilder)
@@ -34,5 +33,4 @@ namespace FiltersSample.Filters
             applicationBuilder.UseRequestLocalization(options);
         }
     }
-    #endregion
 }

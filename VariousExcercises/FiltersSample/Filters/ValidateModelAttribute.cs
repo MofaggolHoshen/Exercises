@@ -17,6 +17,8 @@ namespace FiltersSample.Filters
          * {
          *   _user = user;
          * }
+         * 
+         * For injecting i can user ServiceFilter 
          */
 
         public override void OnActionExecuting(ActionExecutingContext context)
