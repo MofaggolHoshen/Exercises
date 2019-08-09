@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace TaskCancelationToken
 {
     // https://www.youtube.com/watch?v=J0mcYVxJEl0
-    // Time: 23:50
+    // Time: 27:30
     public class AsyncAwaitBestPractice
     {
         #region Don't User .Wait()
@@ -44,7 +44,7 @@ namespace TaskCancelationToken
             var clients = new List<Client>();
 
             // var baIds = await getBusinessActivityIds();
-            // If here only await is used, Thread 1 => Thread 2 => Synchronization Context => Thread 1
+            // If here only await is used, Thread 1 => Thread 2 => Synchronization Contact => Thread 1
             // but thread may busy for other job, thread will be waiting, so we need to tall i don't care next which Thread will take care of this.
             // I don't use .ConfigureAwait(false) while i am interacting with UI
             var baIds = await getBusinessActivityIds().ConfigureAwait(false);
@@ -78,6 +78,17 @@ namespace TaskCancelationToken
         }
 
         #endregion One function depend on other function result
+
+        #region Return Task without async await 
+        private Task<bool> IsSomething()
+        {
+            // Doing this we can save contract switch, Thread 1 to thread 2 and so on. Compiler will not turn async method into a IAsyncClass anymore,
+            // we can save byte of code size.
+            return IsExist();
+
+            // with try catch block, it should not be like this that should be with await otherwise it will never catch Exception.
+        }
+        #endregion
     }
 
     public class Client
