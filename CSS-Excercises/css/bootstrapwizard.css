@@ -1,0 +1,91 @@
+
+body{
+  background: black;
+}
+.row{
+  margin-bottom: 10px;
+}
+.right-arrow{
+    width: 0px;
+    height: 0px;
+    border-left: 100px solid red;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+}
+
+.down-arrow{
+    width: 0px;
+    height: 0px;
+    border-top: 50px solid green;
+    border-right: 50px solid violet;
+    border-left: 50px solid red;
+    border-bottom: 50px solid rosybrown;
+}
+
+#pointer, #pointer:hover {
+    width: 200px;
+    height: 40px;
+    position: relative;
+    background: red;
+  }
+
+  #pointer:hover{
+    background: green;
+  }
+
+  #pointer::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid black;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+  }
+
+
+  #pointer::before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid red;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+  }
+
+  #pointer:hover:before{
+    border-left: 20px solid green;
+  }
+
+  .box{
+    height: 200px;
+    width: 200px;
+    background: red;
+    position: relative;
+    
+  }
+
+  .round-tab{
+    height: 50px;
+    width: 50px;
+    background: white;
+    position: absolute;
+    border-radius: 100px;
+    right: 40%;
+    bottom: 40%;
+    z-index: 1;
+  }
+
+  .connecting-line{
+    height: 2px;
+    width: inherit;
+    position: absolute;
+    background: lawngreen;
+    bottom: 50%;
+    z-index: 0;
+  } 
