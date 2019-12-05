@@ -8,8 +8,8 @@
                     "localhost:44317"
                 ],
                 //"ConnectionString": "Data Source=localhost;Initial Catalog=Tenant1;Integrated Security=True",
-                "ConnectionString": "g=ipc;Persist Security Info=False;User ID=groupware;Password=test11--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-                "Domain": "ipcom", // ipctestde.onmicrosoft.com
+                "ConnectionString": "",
+                "Domain": "ipcom", 
                 "tenantId": "2"
                 
             },
@@ -19,8 +19,8 @@
                     //"localhost:44317"
                 ],
                 //"ConnectionString": "Server=localhost;Database=Tenant2;Trusted_Connection=True;MultipleActiveResultSets=true",
-                "ConnectionString": "Ser3;Initial Catalog=quiputest;Persist Security Info=False;User ID=groupware;Password=test11--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-                "Domain": "grouom", //groupwaretest.onmicrosoft.com
+                "ConnectionString": "",
+                "Domain": "grouom",
                 "tenantId": "9930be3"
             }
         ]
