@@ -11,9 +11,9 @@
                     "ipc.analytics.direct"
                 ],
                 //"ConnectionString": "Data Source=localhost;Initial Catalog=Tenant1;Integrated Security=True",
-                "ConnectionString": "Server=tcp:groupwaresqlserverwest.database.windows.net,1433;Initial Catalog=ipc;Persist Security Info=False;User ID=groupware;Password=test11--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+                "ConnectionString": ";",
                 "Domain": "ipctestde.onmicrosoft.com", // ipctestde.onmicrosoft.com
-                "tenantId": "22f2a5c6-d200-4bf9-967e-0b6571eb5721"
+                "tenantId": ""
                 
             },
             {
@@ -23,9 +23,9 @@
                     "quipu.analytics.direct"
                 ],
                 //"ConnectionString": "Server=localhost;Database=Tenant2;Trusted_Connection=True;MultipleActiveResultSets=true",
-                "ConnectionString": "Server=tcp:groupwaresqlserverwest.database.windows.net,1433;Initial Catalog=quiputest;Persist Security Info=False;User ID=groupware;Password=test11--;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+                "ConnectionString": "Server=tcp:groupwarsultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
                 "Domain": "groupwaretest.onmicrosoft.com", //groupwaretest.onmicrosoft.com
-                "tenantId": "99360fd3-03fe-4f03-9291-fe0c7db80be3"
+                "tenantId": ""
             }
         ]
     }
