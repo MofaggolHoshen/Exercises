@@ -5,27 +5,23 @@
                 "Name": "IPC",
                 "Hostnames": [
                     //"localhost:6001"
-                    "localhost:44317",
-                    //"ipc.analytics.direct",
-                    //"analyticsmultitenant.azurewebsites.net"
-                    "ipc.analytics.direct"
+                    "localhost:44317"
                 ],
                 //"ConnectionString": "Data Source=localhost;Initial Catalog=Tenant1;Integrated Security=True",
-                "ConnectionString": ";",
-                "Domain": "ipctestde.onmicrosoft.com", // ipctestde.onmicrosoft.com
-                "tenantId": ""
+                "ConnectionString": "",
+                "Domain": "ipcom", 
+                "tenantId": "2"
                 
             },
             {
                 "Name": "Quipu",
                 "Hostnames": [
                     //"localhost:44317"
-                    "quipu.analytics.direct"
                 ],
                 //"ConnectionString": "Server=localhost;Database=Tenant2;Trusted_Connection=True;MultipleActiveResultSets=true",
-                "ConnectionString": "Server=tcp:groupwarsultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-                "Domain": "groupwaretest.onmicrosoft.com", //groupwaretest.onmicrosoft.com
-                "tenantId": ""
+                "ConnectionString": "",
+                "Domain": "grouom",
+                "tenantId": "9930be3"
             }
         ]
     }
