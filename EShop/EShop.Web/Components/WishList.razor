@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using EShop.Services
+@using EShop.Domain
+
+@inject EShopService Service
+
+@if (Products.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderedProduct in Products)
+            {
+                <tr>
+                    <td>@orderedProduct.Title</td>
+                    <td>@orderedProduct.Quantity</td>
+                    <td>@orderedProduct.PriceWithDiscount(DateTime.Now)</td>
+                    <td>@(orderedProduct.PriceWithDiscount(DateTime.Now) * orderedProduct.Quantity)</td>
+                    <td><button @onclick="(e=> DeleteWish(orderedProduct))" class="btn btn-danger">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Total: @Products.Sum(i => i.PriceWithDiscount(DateTime.Now) * i.Quantity)</p>
+    <button @onclick="Purchased" class="btn btn-primary">Purchased</button>
+}
+
+@code {
+    [Parameter]
+    public List<Product> Products { get; set; }
+    [Parameter]
+    public EventCallback<int> RefreshParent { get; set; }
+
+    async Task DeleteWish(Product product)
+    {
+        Products.RemoveAll(i => i.Id == product.Id);
+
+        await RefreshParent.InvokeAsync(product.Id);
+    }
+
+    async Task Purchased()
+    {
+        Service.InitCustomer().AddOrders(Products);
+
+        Service.Persists();
+
+        Products.RemoveRange(0, Products.Count);
+
+        await RefreshParent.InvokeAsync(0);
+    }
+
+}

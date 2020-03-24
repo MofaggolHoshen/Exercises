@@ -1,0 +1,31 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Quantities</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.Title</td>
+            <td>@product.Price</td>
+            <td><img src="@product.ImageBase64String" style="height:40px;width:40px;" /></td>
+            <td>@product.Quantities</td>
+            <td>@product.QuantitiesInSock</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ptoducts</h1>
+</div>
+
+@(await Html.RenderComponentAsync<ClientProducts>(RenderMode.ServerPrerendered))
+
+<script src="_framework/blazor.server.js"></script>
