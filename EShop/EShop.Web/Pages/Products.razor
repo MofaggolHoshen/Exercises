@@ -1,0 +1,85 @@
+﻿@page "/products"
+@using Microsoft.AspNetCore.Components.Web
+@using EShop.Services
+@using EShop.Domain
+@using System.Linq;
+
+@inject EShopService Service
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="card-columns">
+            @foreach (var product in products)
+            {
+                <div class="card">
+                    <div class="card-header">@product.Title</div>
+                    <img class="card-img-top" src="@product.ImageBase64String" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @if (product.HasDiscount(DateTime.Now))
+                            {
+                                <del> @product.Price </del>
+                            }
+                            @product.PriceWithDiscount(DateTime.Now) EUR
+
+                            @if (product.HasDiscount(DateTime.Now))
+                            {
+                                @(", You saved " + string.Format("{0:F3}", product.DiscountPrice(DateTime.Now)) + " EUR")
+                            }
+
+                        </h5>
+                        <p class="card-text">@product.Description</p>
+                        <div class="card-text">
+                            <label>Available In Stock:</label>
+                            <label>@product.QuantitiesInSock</label>
+                        </div>
+                        @if (!product.IsInStock || product.QuantitiesInSock == product.Quantity)
+                        {
+                            <button class="btn btn-primary" disabled>Out of Order</button>
+
+                        }
+                        else
+                        {
+                            <button @onclick="(e => AddInProductList(product))" class="btn btn-primary">Order</button>
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @*<div class="col-md-3">
+        <WishList Products="wishList" RefreshParent="Refresh" />
+    </div>*@
+</div>
+
+@code {
+    List<Product> products = new List<Product>();
+    List<Product> wishList = new List<Product>();
+
+    protected override void OnInitialized()
+    {
+        products = Service.InitShop().Products;
+
+        base.OnInitialized();
+    }
+
+    void AddInProductList(Product product)
+    {
+        if (!wishList.Exists(i => i.Id == product.Id))
+        {
+            product.Quantity = 1;
+            wishList.Add(product);
+        }
+        else if (product.Quantities > product.Quantity)
+            wishList.Find(p => p.Id == product.Id).Quantity += 1;
+    }
+
+    void Refresh(int id = 0)
+    {
+        if (id == 0)
+            products = Service.InitShop().Products;
+        else
+            products.Find(i => i.Id == id).Quantity = 0;
+    }
+}
