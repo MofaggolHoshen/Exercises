@@ -1,10 +1,22 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Reflection;
 
 namespace ReflectionExcercises
 {
     [TestClass]
     public class UnitTest1
     {
+        [TestMethod]
+        public void TestOne()
+        {
+            var personAssembly = Assembly.GetAssembly(typeof(PersonInformaion));
+
+            var type = personAssembly.CreateInstance(typeof(PersonInformaion).FullName);
+
+            //var person =Activator.CreateInstance(type);
+
+        }
         [TestMethod]
         public void GetPropertyName()
         {
