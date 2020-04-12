@@ -1,0 +1,35 @@
+﻿<h3>Samples</h3>
+
+@*<ChildToParentBinding @bind-InputValue="MyProperty"/>*@
+
+@*<button @onclick="Saved">Save</button>*@
+
+@code {
+    public string MyProperty { get; set; }
+
+    void Saved()
+    {
+        MyProperty = "This is summon.";
+    }
+}
+
+
+@*<p>ParentYear: @ParentYear</p>
+
+<ParentToChildBinding @bind-Year="ParentYear" />
+
+<button class="btn btn-primary" @onclick="ChangeTheYear">
+    Change Year to 1986
+</button>*@
+
+@code {
+    [Parameter]
+    public int ParentYear { get; set; } = 1978;
+
+    private void ChangeTheYear()
+    {
+        ParentYear = 1986;
+    }
+}
+
+<ExternallyToUpdateState/>

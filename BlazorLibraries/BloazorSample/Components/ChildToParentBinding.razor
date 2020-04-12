@@ -1,0 +1,27 @@
+﻿<h3>ChildToParentBinding</h3>
+
+<input value="@InputValue" @attributes="InputAttributes" @onchange="OnInputChanged" />
+
+@code {
+    [Parameter]
+    public string InputValue { get; set; }
+    [Parameter]
+    public EventCallback<string> InputValueChanged { get; set; }
+
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+            {
+               { "id", "DefaultId" },
+               { "type", "text" },
+               { "placeholder", "" }
+                    };
+
+    private Task OnInputChanged(ChangeEventArgs e)
+    {
+        InputValue = e.Value.ToString();
+
+        return InputValueChanged.InvokeAsync(InputValue);
+    }
+}

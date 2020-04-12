@@ -1,0 +1,14 @@
+﻿<!-- Red Component -->
+
+@inject NotifierService AppState
+
+<button @onclick="SelectColour">Select Red</button>
+
+@code {
+
+    void SelectColour()
+    {
+        AppState.SetColour("Red");
+    }
+
+}

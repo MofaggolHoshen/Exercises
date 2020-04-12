@@ -1,0 +1,11 @@
+﻿<h3>ParentToChildBinding</h3>
+
+<p>Year: @Year</p>
+
+@code {
+    [Parameter]
+    public int Year { get; set; }
+
+    [Parameter]
+    public EventCallback<int> YearChanged { get; set; }
+}
