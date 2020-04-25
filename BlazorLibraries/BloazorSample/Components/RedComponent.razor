@@ -1,14 +1,45 @@
 ﻿<!-- Red Component -->
+@*@inject NotifierService AppState
 
-@inject NotifierService AppState
+    <button @onclick="SelectColour">Select Red</button>
 
-<button @onclick="SelectColour">Select Red</button>
+    @code {
+
+        void SelectColour()
+        {
+            AppState.SetColour("Red");
+        }
+
+    }*@
+
+@inject NotifierService Notifier
+@implements IDisposable
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    int currentCount;
 
-    void SelectColour()
+    protected override void OnInitialized()
     {
-        AppState.SetColour("Red");
+        Notifier.Notify += OnNotify;
     }
 
+    public void OnNotify()
+    {
+        currentCount = 0;
+        StateHasChanged();
+    }
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    public void Dispose()
+    {
+        Notifier.Notify -= OnNotify;
+    }
 }

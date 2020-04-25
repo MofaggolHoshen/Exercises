@@ -4,8 +4,20 @@ using System.Linq;
 
 namespace EqualityTest
 {
-    public class SampleClass : ISampleClass
+    class MyClass : SampleClass
     {
+        public override void MyVMethod()
+        {
+
+        }
+    }
+    public class SampleClass
+    {
+        public virtual void MyVMethod()
+        {
+
+            throw new NotImplementedException();
+        }
         public void MyMethod(object arg)
         {
             throw new NotImplementedException();

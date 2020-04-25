@@ -1,22 +1,14 @@
 ﻿@inject NotifierService AppState
-@implements IDisposable
 
-@AppState.SelectedColour
 
 <RedComponent></RedComponent>
 <BlueComponent></BlueComponent>
 
-
+<button @onclick="OnClick">Click Me</button>
 @code {
 
-    protected override void OnInitialized()
+    void OnClick()
     {
-        AppState.OnChange += StateHasChanged;
+        AppState.Update();
     }
-
-    public void Dispose()
-    {
-        AppState.OnChange -= StateHasChanged;
-    }
-
 }

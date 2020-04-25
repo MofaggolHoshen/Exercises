@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloazorSample", "BloazorSam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSample", "..\..\..\..\Downloads\AspNetCore.Docs\aspnetcore\blazor\common\samples\3.x\BlazorServerSample\BlazorSample.csproj", "{B92818FB-0DFD-4E74-96D4-55B04593F963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatefulReconnection", "StatefulReconnection\StatefulReconnection.csproj", "{4E80B2F9-E2E3-49D9-9041-FEF9A214073C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E80B2F9-E2E3-49D9-9041-FEF9A214073C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E80B2F9-E2E3-49D9-9041-FEF9A214073C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E80B2F9-E2E3-49D9-9041-FEF9A214073C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E80B2F9-E2E3-49D9-9041-FEF9A214073C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

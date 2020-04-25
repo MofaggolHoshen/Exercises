@@ -7,16 +7,27 @@ namespace BloazorSample.Services
 {
     public class NotifierService
     {
-        public string SelectedColour { get; private set; }
+        //public string SelectedColour { get; private set; }
 
-        public event Action OnChange;
+        //public event Action OnChange;
 
-        public void SetColour(string colour)
+        //public void SetColour(string colour)
+        //{
+        //    SelectedColour = colour;
+        //    NotifyStateChanged();
+        //}
+
+        //private void NotifyStateChanged() => OnChange?.Invoke();
+
+        // Can be called from anywhere
+        public void Update()
         {
-            SelectedColour = colour;
-            NotifyStateChanged();
+            if (Notify != null)
+            {
+                Notify.Invoke();
+            }
         }
 
-        private void NotifyStateChanged() => OnChange?.Invoke();
+        public event Action Notify;
     }
 }

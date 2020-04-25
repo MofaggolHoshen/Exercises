@@ -1,0 +1,33 @@
+﻿@inject IJSRuntime JSRuntime;
+
+<div class="alert fixed-bottom mb-0 rounded-0 text-white bg-@_alertType border-@_alertType collapse" role="alert"  id="actionSuccessed">
+    @_message
+</div>
+
+@code {
+    private string _message;
+    private AlertType _alertType;
+
+    public async void Show(string message, AlertType alertType, int deayTimeInMilisec)
+    {
+        _message = message;
+        _alertType = alertType;
+
+        StateHasChanged();
+
+        await JSRuntime.InvokeVoidAsync("blazorjs.alertMessageBox", deayTimeInMilisec);
+
+    }
+
+
+    public enum AlertType
+    {
+        primary,
+        secondary,
+        success,
+        danger,
+        warning,
+        info,
+        dark
+    }
+}

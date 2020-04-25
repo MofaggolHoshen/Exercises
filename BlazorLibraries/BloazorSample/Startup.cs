@@ -16,20 +16,27 @@ namespace BloazorSample
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHost)
         {
             Configuration = configuration;
+            _env = webHost;
         }
 
         public IConfiguration Configuration { get; }
+        private readonly IWebHostEnvironment _env;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<NotifierService>();
+            services.AddTransient<ServiceClass>();
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor()
+                .AddCircuitOptions(option=> {
+                    if (_env.IsDevelopment())
+                        option.DetailedErrors = true;
+                });
             services.AddSingleton<WeatherForecastService>();
         }
 
