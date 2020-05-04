@@ -16,10 +16,9 @@
         {
             // Just load into .NET memory to show it can be done
             // Alternatively it could be saved to disk, or parsed in memory, or similar
-            var ms = new MemoryStream();
-            await file.Data.CopyToAsync(ms);
+            var ms = new StreamReader(file.Data);
 
-            string str = System.Text.Encoding.Default.GetString(ms.ToArray());
+            string str = await ms.ReadToEndAsync();
 
             status = $"Finished loading {file.Size} bytes from {file.Name}";
         }
