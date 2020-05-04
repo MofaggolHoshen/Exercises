@@ -17,9 +17,10 @@ namespace EntityFrameworkExcercises.ObjectOrientedSample
             using (var context = new ObjectOrientedDbContext())
             {
                 var st = context.Students
-                                .Include(i=> i.StudentSubjects)
-                                    .ThenInclude(i=> i.Subject)
-                                .ToList();       
+                                .Include(i=> i.StudentSubjects.Where(i=> i.SubjectId == 1))
+                                    .ThenInclude(i=> i.Subject);
+                var str = st.ToQueryString();
+                var l = st.ToList();
             }
         }
 

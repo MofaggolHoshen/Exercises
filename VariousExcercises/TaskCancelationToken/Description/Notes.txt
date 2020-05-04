@@ -1,0 +1,11 @@
+﻿-- Working with shared variables and collections
+
+We can user 
+	1. Interlocked, is an object
+	2. ConcurrentBag, is an collection
+	3. lock an object
+		object obj = new object();
+            lock (obj)
+            {
+                // variable shared with tasks
+            }

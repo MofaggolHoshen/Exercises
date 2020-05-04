@@ -1,0 +1,42 @@
+﻿@implements IDisposable
+@inject IJSRuntime JSRuntime
+
+<input type="file" @ref="inputFileElement" />
+
+@code {
+
+    ElementReference inputFileElement;
+    IDisposable thisReference;
+    //[Parameter]
+    //public string FileStr { get; set; }
+    [Parameter]
+    public Func<string, Task> FileStrChanged { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            thisReference = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeAsync<object>("blazorjs.fileExcelReading", inputFileElement, thisReference);
+        }
+    }
+
+    [JSInvokable]
+    public async Task NotifyExcel(FileEx str)
+    {
+        //MemoryStream memoryStream = new MemoryStream(str, 0, str.Length, false);
+        //await FileStrChanged.Invoke(str);
+
+        await Task.CompletedTask;
+
+    }
+    void IDisposable.Dispose()
+    {
+        thisReference?.Dispose();
+    }
+
+    public class FileEx
+    {
+        public object Content { get; set; }
+    }
+}

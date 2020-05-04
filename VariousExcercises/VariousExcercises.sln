@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariousExcercises", "Variou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingExcelFile", "ReadingExcelFile\ReadingExcelFile.csproj", "{626214DB-056F-485F-97E5-C09D012CC5C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskCancelationToken", "TaskCancelationToken\TaskCancelationToken.csproj", "{B53AC8F0-C2ED-4BCD-A977-C8B593B3EE96}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSONExcercises", "JSONExcercises\JSONExcercises.csproj", "{2685140C-7CD1-4F1D-B109-F7E6B6B2041E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionSample", "ExpressionSample\ExpressionSample.csproj", "{9B740F3D-E93D-48F6-8431-D09F0618B3B3}"
@@ -49,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqualityTest", "EqualityTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsKeyWord", "IsKeyWord\IsKeyWord.csproj", "{85504535-EAC3-4480-8C65-9C03E08E6E2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShart8Features", "CShart8Features\CShart8Features.csproj", "{E802B407-BC4A-4891-9E05-A599D4879CA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CShart8Features", "CShart8Features\CShart8Features.csproj", "{E802B407-BC4A-4891-9E05-A599D4879CA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskCancelationToken", "TaskCancelationToken\TaskCancelationToken.csproj", "{34B5C35D-17BB-4188-BAA3-C4C1E4B15C9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,6 @@ Global
 		{626214DB-056F-485F-97E5-C09D012CC5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626214DB-056F-485F-97E5-C09D012CC5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626214DB-056F-485F-97E5-C09D012CC5C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B53AC8F0-C2ED-4BCD-A977-C8B593B3EE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B53AC8F0-C2ED-4BCD-A977-C8B593B3EE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B53AC8F0-C2ED-4BCD-A977-C8B593B3EE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B53AC8F0-C2ED-4BCD-A977-C8B593B3EE96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2685140C-7CD1-4F1D-B109-F7E6B6B2041E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2685140C-7CD1-4F1D-B109-F7E6B6B2041E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2685140C-7CD1-4F1D-B109-F7E6B6B2041E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,6 +97,10 @@ Global
 		{E802B407-BC4A-4891-9E05-A599D4879CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E802B407-BC4A-4891-9E05-A599D4879CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E802B407-BC4A-4891-9E05-A599D4879CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B5C35D-17BB-4188-BAA3-C4C1E4B15C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B5C35D-17BB-4188-BAA3-C4C1E4B15C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B5C35D-17BB-4188-BAA3-C4C1E4B15C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B5C35D-17BB-4188-BAA3-C4C1E4B15C9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
