@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BloazorSample", "BloazorSam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSample", "..\..\..\..\Downloads\AspNetCore.Docs\aspnetcore\blazor\common\samples\3.x\BlazorServerSample\BlazorSample.csproj", "{B92818FB-0DFD-4E74-96D4-55B04593F963}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogInTest", "LogInTest\LogInTest.csproj", "{5CD4811B-ED7A-4F73-B466-A6A40BB5F71D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{47490B1B-8C9B-4A43-8F6C-98989A98FF3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92818FB-0DFD-4E74-96D4-55B04593F963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CD4811B-ED7A-4F73-B466-A6A40BB5F71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD4811B-ED7A-4F73-B466-A6A40BB5F71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD4811B-ED7A-4F73-B466-A6A40BB5F71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD4811B-ED7A-4F73-B466-A6A40BB5F71D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47490B1B-8C9B-4A43-8F6C-98989A98FF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47490B1B-8C9B-4A43-8F6C-98989A98FF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47490B1B-8C9B-4A43-8F6C-98989A98FF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47490B1B-8C9B-4A43-8F6C-98989A98FF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

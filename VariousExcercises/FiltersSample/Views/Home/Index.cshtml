@@ -1,8 +1,11 @@
-﻿@{
+﻿@model FiltersSample.Models.HomeModelView
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <form asp-action="Index" asp-controller="Home" method="post">
+        <input asp-for="Id" />
+        <input asp-for="Name" />
+        <button type="submit">Save</button>
+    </form>
+

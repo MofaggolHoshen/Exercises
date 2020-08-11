@@ -13,11 +13,8 @@ namespace FiltersSample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService userService;
-
-        public HomeController(IUserService user)
+        public HomeController()
         {
-            userService = user;
         }
 
         //[TypeFilterSample]
@@ -25,6 +22,17 @@ namespace FiltersSample.Controllers
         public IActionResult Index()
         {
             var r = 20;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(HomeModelView  homeModelView)
+        {
+            if (ModelState.IsValid)
+            {
+                var k = 2;
+            }
+
             return View();
         }
 
