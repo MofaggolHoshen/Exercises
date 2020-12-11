@@ -2,26 +2,26 @@
 
 <p>A single file input that uploads automatically on file selection</p>
 
-<InputFile OnChange="HandleSelection" />
+@*<InputFile OnChange="HandleSelection" />*@
 
 <p>@status</p>
 
 @code {
     string status;
 
-    async Task HandleSelection(IFileListEntry[] files)
-    {
-        var file = files.FirstOrDefault();
-        if (file != null)
-        {
-            // Just load into .NET memory to show it can be done
-            // Alternatively it could be saved to disk, or parsed in memory, or similar
-            var ms = new StreamReader(file.Data);
+    //async Task HandleSelection(IFileListEntry[] files)
+    //{
+    //    var file = files.FirstOrDefault();
+    //    if (file != null)
+    //    {
+    //        // Just load into .NET memory to show it can be done
+    //        // Alternatively it could be saved to disk, or parsed in memory, or similar
+    //        var ms = new StreamReader(file.Data);
 
-            string str = await ms.ReadToEndAsync();
+    //        string str = await ms.ReadToEndAsync();
 
-            status = $"Finished loading {file.Size} bytes from {file.Name}";
-        }
-    }
+    //        status = $"Finished loading {file.Size} bytes from {file.Name}";
+    //    }
+    //}
 }
 
