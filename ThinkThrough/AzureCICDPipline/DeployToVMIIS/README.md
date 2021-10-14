@@ -52,9 +52,9 @@ Step 2: Create release pipeline
 
 * Create Deployment Group
 
-1. Go to Deployment group -> New ![DeploymentGroup](https://github.com/MofaggolHoshen/Exercises/blob/master/Azure%20CICD%20Pipline/Deploy%20to%20VM%20IIS/DeploymentGroup.PNG)
+1. Go to Deployment group -> New ![DeploymentGroup](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/DeploymentGroup.PNG)
 
-2. Copy the Script and run in virtual machine command line tool (Administrator) ![DeploymentGroup](https://github.com/MofaggolHoshen/Exercises/blob/master/Azure%20CICD%20Pipline/Deploy%20to%20VM%20IIS/DeploymentGroup2.PNG)
+2. Copy the Script and run in virtual machine command line tool (Administrator) ![DeploymentGroup](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/DeploymentGroup2.PNG)
 
 * Create release pipline
 
@@ -64,6 +64,6 @@ Step 2: Create release pipeline
 
 3. Remove all the job from Stage, or what ervet the name
 
-4. Select 'Add deployment group job', follow the picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/Azure%20CICD%20Pipline/Deploy%20to%20VM%20IIS/ReleasePipline.PNG)
+4. Select 'Add deployment group job', follow the picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/ReleasePipline.PNG)
 
-5. Select 'Deploy IIS', follow picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/Azure%20CICD%20Pipline/Deploy%20to%20VM%20IIS/ReleasePipline2.PNG)
+5. Select 'Deploy IIS', follow picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/ReleasePipline2.PNG)
