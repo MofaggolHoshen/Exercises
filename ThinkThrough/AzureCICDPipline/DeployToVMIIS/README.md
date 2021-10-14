@@ -64,6 +64,6 @@ Step 2: Create release pipeline
 
 3. Remove all the job from Stage, or what ervet the name
 
-4. Select 'Add deployment group job', follow the picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/ReleasePipline.PNG)
+4. Select 'Add deployment group job', follow the picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/ReleasePipline.png)
 
 5. Select 'Deploy IIS', follow picture ![Release](https://github.com/MofaggolHoshen/Exercises/blob/master/ThinkThrough/AzureCICDPipline/DeployToVMIIS/ReleasePipline2.PNG)
