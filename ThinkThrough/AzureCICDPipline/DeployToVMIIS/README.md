@@ -1,5 +1,7 @@
 # Deploy to IIS
 
+To read more about Azure pipeline [task](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/?view=azure-devops)
+
 ## .Net 5 Web app
 
 We need to follow two steps
