@@ -1,6 +1,6 @@
 # Deploy to IIS
 
-To read more about Azure pipeline [task](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/?view=azure-devops)
+To read more about Azure pipeline [task](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/?view=azure-devops) and [template](https://github.com/microsoft/azure-pipelines-yaml)
 
 ## .Net 5 Web app
 
