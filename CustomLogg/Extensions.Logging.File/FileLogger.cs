@@ -8,7 +8,7 @@ namespace Extensions.Logging.File
     public class FileLogger : ILogger
     {
         private readonly string _name;
-
+        private readonly int _id;
         public FileLogger(string categoryName)
         {
             _name = categoryName;
