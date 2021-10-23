@@ -38,11 +38,16 @@ else
     </table>
 }
 
+<Flipper/>
+
 @code {
+    private IJSObjectReference module;
+
     private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+    
 }
