@@ -69,42 +69,41 @@ export function setElementText2(element) {
 <div @ref="elementReference" id="ClickMeButton">Click Me</div>
 
 @code {
-	[Parameter]
-	public Vocabulary Vocabulary { get; set; }
+    [Parameter]
+    public Vocabulary Vocabulary { get; set; }
 
-	private IJSObjectReference module;
-	private ElementReference elementReference;
+    private IJSObjectReference module;
+    private ElementReference elementReference;
 
-	protected override async Task OnAfterRenderAsync(bool firstRender)
-	{
-		if (firstRender)
-		{
-			module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/script.js");
-			flip();
-		}
-	}
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/script.js");
+            flip();
+        }
+    }
 
-	async void flip()
-	{
-		//await module.InvokeVoidAsync("flipper");
+    async void flip()
+    {
+        //await module.InvokeVoidAsync("flipper");
 
-		await module.InvokeVoidAsync("setElementText2", elementReference);
-	}
+        await module.InvokeVoidAsync("setElementText2", elementReference);
+    }
 
-	async ValueTask IAsyncDisposable.DisposeAsync()
-	{
-		try
-		{
-			if (module is not null)
-			{
-				await module.DisposeAsync();
-			}
-		}catch(Exception e)
-		{
-			
-		}
-	}
-
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        try
+        {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+        }catch(Exception e)
+        {
+                
+        }
+    }
 }
 
 ```
