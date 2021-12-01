@@ -2,7 +2,7 @@
 
 ## Queries from Excel
 
-Write in function bar your SQL script
+Write in Excel function bar your SQL script
 
 ```EXCEL
 ="UPDATE [dbo].[AspNetUsers]
