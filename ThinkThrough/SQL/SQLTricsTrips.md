@@ -2,7 +2,7 @@
 
 ## Queries from Excel
 
-Write in Excel function bar your SQL script
+Write in Excel function bar your SQL script, how we are suming two cel value
 
 ```EXCEL
 ="UPDATE [dbo].[AspNetUsers]
