@@ -1,0 +1,26 @@
+﻿@inject DiContainer.Services.ScopeService _scop;
+@inject DiContainer.Services.SingletonService _single;
+@inject DiContainer.Services.TransientService _trans;
+
+@inject DiContainer.Services.CollectionServices _serColl;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <p>Scope: Per request will instanciate.</p>
+    <p>Single: It'll instanciate only once, and used in entier solution.</p>
+    <p>Transient: Each injection, it'll instantiate.</p>
+
+    <h5 class="display-4">Individual Service Call</h5>
+    <p>Scope: @_scop.Id</p>
+    <p>Single: @_single.Id</p>
+    <p>Transient: @_trans.Id</p>
+
+    <h5 class="display-4">Injected Service Call</h5>
+    <p>Scope: @_serColl._scopeService.Id</p>
+    <p>Single: @_serColl._singletonService.Id</p>
+    <p>Transient: @_serColl._transientService.Id</p>
+
+</div>
