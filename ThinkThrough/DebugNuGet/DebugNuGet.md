@@ -65,7 +65,7 @@ steps:
 
 ## Step - 3: Set up Visual Studio
 
-Setup azure artifact symbol swerver in Visual Studio
+Setup azure artifact symbol server in Visual Studio
 
 Visual Studio -> Tools -> Debugging -> Symbols
 
