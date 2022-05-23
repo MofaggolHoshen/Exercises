@@ -70,7 +70,7 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '82b48f98-1136-426a-9297-1ed9e9c77643/a4df63e7-7dca-4791-8818-cc315dcdccac'
+    publishVstsFeed: '82bere48f98-15efff36-426a-9297-1eeeff9c77643/a4df63e7-7dca-4791-8818-cddeecdccac'
 ```
 
 ## Step - 3: Set up Visual Studio
