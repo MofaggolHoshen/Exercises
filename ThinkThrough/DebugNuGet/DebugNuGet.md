@@ -80,3 +80,7 @@ Setup azure artifact symbol server in Visual Studio
 Visual Studio -> Tools -> Debugging -> Symbols
 
 More Details: https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/symbols?view=azure-devops#set-up-visual-studio
+
+### Step - Blazor 
+
+External Source -> Right click specific nuget package (.dll) -> click 'Decompile Source to Symbol File'
