@@ -83,4 +83,6 @@ More Details: https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/
 
 ### Step - Blazor 
 
+In Blazor applicaiton need to do this extra step
+
 External Source -> Right click specific nuget package (.dll) -> click 'Decompile Source to Symbol File'
