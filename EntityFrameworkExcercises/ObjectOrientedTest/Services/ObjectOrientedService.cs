@@ -17,15 +17,14 @@ namespace ObjectOrientedTest.Services
             _context=context;
         }
 
-        internal async  Task<List<Applicant>> Init(int applicantId)
+        internal async  Task<Applicant> Init(int applicantId)
         {
             var applicant = await _context.Applicants
-                                     .Include(a=> a.Applications)
-                                        .ThenInclude(ap=> ap.Educations)
+                                     .Include(a => a.Applications)
+                                        .ThenInclude(ap => ap.Educations)
                                     .Include(a => a.Applications)
-                                        .ThenInclude(ap=> ap.Experiences)
-                                    .Where(a=> a.Id == applicantId)
-                                    .ToListAsync();
+                                        .ThenInclude(ap => ap.Experiences)
+                                    .SingleAsync(a => a.Id == applicantId);
 
             return applicant;
 

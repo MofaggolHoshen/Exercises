@@ -10,11 +10,39 @@ namespace ObjectOrientedTest
     [TestClass]
     public class AddOperationsTest
     {
-        public void AddNewEntityToExistingExtityTest()
+        [TestMethod]
+        public async Task AddNewEntityToExistingExtityTest()
         {
             ObjectOrientedDbContext context = new();
+            ObjectOrientedService service = new(context);
 
-            
+            var applicant = await service.Init(applicantId: 1);
+            var application = applicant.Applications.Single();
+
+            var ex = new Entities.Experience()
+            {
+                Sector = "C#",
+                companyName = "ABC GmbH"
+            };
+
+            application.AddExperience(ex);
+
+           var result = await service.Persist();
+        }
+
+        [TestMethod]
+        public void SomeTest()
+        {
+            var ex = new Entities.Experience()
+            {
+                Sector = "C#",
+                companyName = "ABC GmbH"
+            };
+
+            var ex2 = new Entities.Experience(new Entities.Application() { Id = 1 }, ex);
+            ex2.Id = 20;
+
+            Assert.IsTrue(ex2.Id == ex.Id);
         }
     }
 }
