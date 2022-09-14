@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedTest.Entities
+namespace ObjectOriented.Entities
 {
-    internal class Experience
+    public class Experience
     {
         public int Id { get; set; }
         public string Sector { get; set; }
@@ -22,10 +22,10 @@ namespace ObjectOrientedTest.Entities
 
         public Experience(Application application, Experience experience)
         {
-            this.ApplicationId = application.Id;
-            this.Application = application;
-            this.Sector = experience.Sector;
-            this.companyName = experience.companyName;
+            ApplicationId = application.Id;
+            Application = application;
+            Sector = experience.Sector;
+            companyName = experience.companyName;
         }
     }
 }

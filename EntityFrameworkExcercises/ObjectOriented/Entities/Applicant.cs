@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedTest.Entities
+namespace ObjectOriented.Entities
 {
-    internal class Applicant
+    public class Applicant
     {
         public int Id { get; set; }
         public string Name { get; set; }

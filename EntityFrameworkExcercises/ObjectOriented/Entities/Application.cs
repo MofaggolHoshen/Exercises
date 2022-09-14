@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedTest.Entities
+namespace ObjectOriented.Entities
 {
-    internal class Application
+    public class Application
     {
         public int Id { get; set; }
         public string JobOfferName { get; set; }
@@ -16,9 +16,11 @@ namespace ObjectOrientedTest.Entities
         public int ApplicantId { get; set; }
         public Applicant Applicant { get; set; }
 
-        internal void AddExperience(Experience experience)
+        public void AddExperience(Experience experience)
         {
-            this.Experiences.Add(new Experience(this, experience));
+            experience.Application = this;
+
+            Experiences.Add(experience);
         }
     }
 }

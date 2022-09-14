@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
-using ObjectOrientedTest.Entities;
+using ObjectOriented.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedTest.Services
+namespace ObjectOriented.Services
 {
-    internal class ObjectOrientedDbContext : DbContext
+    public class ObjectOrientedDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

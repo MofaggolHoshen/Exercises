@@ -2,17 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ObjectOrientedTest.Services;
+using ObjectOriented.Services;
 
 #nullable disable
 
 namespace ObjectOrientedConsole.Migrations
 {
     [DbContext(typeof(ObjectOrientedDbContext))]
-    partial class ObjectOrientedDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220912093254_addedParentToChild")]
+    partial class addedParentToChild
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

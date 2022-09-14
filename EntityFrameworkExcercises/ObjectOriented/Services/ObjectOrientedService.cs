@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ObjectOrientedTest.Entities;
+using ObjectOriented.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedTest.Services
+namespace ObjectOriented.Services
 {
-    internal class ObjectOrientedService
+    public class ObjectOrientedService
     {
         private readonly ObjectOrientedDbContext _context;
 
@@ -17,7 +17,7 @@ namespace ObjectOrientedTest.Services
             _context=context;
         }
 
-        internal async  Task<Applicant> Init(int applicantId)
+        public async Task<Applicant> Init(int applicantId)
         {
             var applicant = await _context.Applicants
                                      .Include(a => a.Applications)
@@ -30,7 +30,7 @@ namespace ObjectOrientedTest.Services
 
         }
 
-        internal async Task<int> Persist()
+        public async Task<int> Persist()
         {
 
             return await _context.SaveChangesAsync();

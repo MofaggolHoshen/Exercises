@@ -1,5 +1,5 @@
-using ObjectOrientedTest.Entities;
-using ObjectOrientedTest.Services;
+using ObjectOriented.Entities;
+using ObjectOriented.Services;
 
 namespace ObjectOrientedTest
 {
